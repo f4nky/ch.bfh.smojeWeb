@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 14. Nov 2014 um 15:32
+-- Erstellungszeit: 14. Nov 2014 um 15:47
 -- Server Version: 5.6.12
 -- PHP-Version: 5.5.3
 
@@ -216,7 +216,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (95, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (96, 'sidebars_widgets', 'a:3:{s:19:"wp_inactive_widgets";a:0:{}s:18:"orphaned_widgets_1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:13:"array_version";i:3;}', 'yes'),
 (97, 'cron', 'a:5:{i:1415985600;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1416012459;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1416040212;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1416060189;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
-(105, '_transient_random_seed', '40639fda7eef3892ae855584d003806f', 'yes'),
+(105, '_transient_random_seed', '6dcd525da1f4120d0412a72b925c9c0b', 'yes'),
 (108, 'can_compress_scripts', '1', 'yes'),
 (132, '_transient_twentyfourteen_category_count', '1', 'yes'),
 (140, '_site_transient_timeout_browser_ac9386a299a38c45aff51ebe255b8219', '1416558613', 'yes'),
@@ -282,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Daten für Tabelle `wp_postmeta`
@@ -290,11 +290,14 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
 
 INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
 (4, 5, '_edit_last', '1'),
-(5, 5, '_edit_lock', '1415973782:1'),
+(5, 5, '_edit_lock', '1415976091:1'),
 (6, 5, '_wp_page_template', 'contact.php'),
 (7, 8, '_edit_last', '1'),
 (8, 8, '_edit_lock', '1415973965:1'),
-(9, 8, '_wp_page_template', 'default');
+(9, 8, '_wp_page_template', 'default'),
+(10, 10, '_edit_last', '1'),
+(11, 10, '_edit_lock', '1415976314:1'),
+(12, 10, '_wp_page_template', 'details.php');
 
 -- --------------------------------------------------------
 
@@ -331,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Daten für Tabelle `wp_posts`
@@ -343,7 +346,9 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (6, 1, '2014-11-14 16:03:21', '2014-11-14 14:03:21', '', 'Kontakt', '', 'inherit', 'open', 'open', '', '5-revision-v1', '', '', '2014-11-14 16:03:21', '2014-11-14 14:03:21', '', 5, 'http://localhost/ch.bfh.smojeWeb/?p=6', 0, 'revision', '', 0),
 (7, 1, '2014-11-14 16:04:51', '0000-00-00 00:00:00', '', 'Automatisch gespeicherter Entwurf', '', 'auto-draft', 'open', 'open', '', '', '', '', '2014-11-14 16:04:51', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=7', 0, 'post', '', 0),
 (8, 1, '2014-11-14 16:08:06', '2014-11-14 14:08:06', '', 'Projekt', '', 'publish', 'open', 'open', '', 'projekt', '', '', '2014-11-14 16:08:06', '2014-11-14 14:08:06', '', 0, 'http://localhost/ch.bfh.smojeWeb/?page_id=8', 0, 'page', '', 0),
-(9, 1, '2014-11-14 16:08:06', '2014-11-14 14:08:06', '', 'Projekt', '', 'inherit', 'open', 'open', '', '8-revision-v1', '', '', '2014-11-14 16:08:06', '2014-11-14 14:08:06', '', 8, 'http://localhost/ch.bfh.smojeWeb/8-revision-v1/', 0, 'revision', '', 0);
+(9, 1, '2014-11-14 16:08:06', '2014-11-14 14:08:06', '', 'Projekt', '', 'inherit', 'open', 'open', '', '8-revision-v1', '', '', '2014-11-14 16:08:06', '2014-11-14 14:08:06', '', 8, 'http://localhost/ch.bfh.smojeWeb/8-revision-v1/', 0, 'revision', '', 0),
+(10, 1, '2014-11-14 16:45:14', '2014-11-14 14:45:14', '', 'Details', '', 'publish', 'open', 'open', '', 'details', '', '', '2014-11-14 16:45:14', '2014-11-14 14:45:14', '', 0, 'http://localhost/ch.bfh.smojeWeb/?page_id=10', 0, 'page', '', 0),
+(11, 1, '2014-11-14 16:45:14', '2014-11-14 14:45:14', '', 'Details', '', 'inherit', 'open', 'open', '', '10-revision-v1', '', '', '2014-11-14 16:45:14', '2014-11-14 14:45:14', '', 10, 'http://localhost/ch.bfh.smojeWeb/10-revision-v1/', 0, 'revision', '', 0);
 
 -- --------------------------------------------------------
 
@@ -448,7 +453,7 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (11, 1, 'wp_user_level', '10'),
 (12, 1, 'dismissed_wp_pointers', 'wp350_media,wp360_revisions,wp360_locks,wp390_widgets'),
 (13, 1, 'show_welcome_panel', '0'),
-(14, 1, 'session_tokens', 'a:6:{s:64:"736a9201406e142df731d579061e647f51af225ff8e1daa929d1ea00d5c8bb5a";i:1416126612;s:64:"caf277254fa556d79aed4d8fb662c2a45179939e7078878f2484df367976da64";i:1416132133;s:64:"d55ee3d703ed489eb3db240225de192e883b6ba448e578683b05d17200ddc953";i:1416143582;s:64:"6abb0b734c36bc247a948ec0c30018a9d3c25bd9878fb5c3411b277a9463c27e";i:1416144143;s:64:"91fcba1d64bddd709b00bcc11f2805a1b449e8f93242a252db7cea560f7a65b0";i:1416144216;s:64:"e149bb7ea35051b172d71d0524f132ed27ab9ad59e0bfe711bfd513d94f817e6";i:1416146559;}'),
+(14, 1, 'session_tokens', 'a:7:{s:64:"736a9201406e142df731d579061e647f51af225ff8e1daa929d1ea00d5c8bb5a";i:1416126612;s:64:"caf277254fa556d79aed4d8fb662c2a45179939e7078878f2484df367976da64";i:1416132133;s:64:"d55ee3d703ed489eb3db240225de192e883b6ba448e578683b05d17200ddc953";i:1416143582;s:64:"6abb0b734c36bc247a948ec0c30018a9d3c25bd9878fb5c3411b277a9463c27e";i:1416144143;s:64:"91fcba1d64bddd709b00bcc11f2805a1b449e8f93242a252db7cea560f7a65b0";i:1416144216;s:64:"e149bb7ea35051b172d71d0524f132ed27ab9ad59e0bfe711bfd513d94f817e6";i:1416146559;s:64:"402e744fdaba567f4135de8a6c8932633d7ceeb7666a8a941059539c58e150c5";i:1416148857;}'),
 (15, 1, 'wp_dashboard_quick_press_last_post_id', '7'),
 (16, 1, 'icwp_wptb_current_version', 'temp'),
 (17, 1, 'icwp_wptb_plugin_translation_notice', 'temp'),
