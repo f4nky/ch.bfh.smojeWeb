@@ -174,6 +174,43 @@ textarea {
 	resize: vertical;
 }
 
+/* Map marker */
+
+table.details,
+table.details tr,
+table.details th,
+table.details td {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+table.details tr {
+	margin-bottom: 0;
+	padding-bottom: 0.5em;	
+}
+
+table.details th {	
+	vertical-align: top;
+	text-align: left;
+	margin: 0;
+	padding-right: 0.5em;
+}
+
+.measurementDetailLink {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	text-decoration: none;
+	background-color: #00bff3;
+	padding: 1em;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+/* Mobile-styles */
+
 @media(max-width: 767px) {
 	header {
 		height: 77px;
