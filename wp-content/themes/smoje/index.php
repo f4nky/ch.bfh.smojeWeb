@@ -1,9 +1,3 @@
-<?php
-/*
-Template Name: Homepage
-*/
-?>
-
 <?php get_header(); ?>
 
 		<div id="map-holder" class="map-holder-big"></div>

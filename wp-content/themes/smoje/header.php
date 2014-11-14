@@ -24,19 +24,13 @@
 							<span class="icon-bar"></span>
 						</button>
 						<div class="social">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-				            <a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="https://www.facebook.com/smuoy"><i class="fa fa-facebook"></i></a>
+				            <a href="https://twitter.com/smuoy"><i class="fa fa-twitter"></i></a>
 				            <a href="#"><i class="fa fa-google-plus"></i></a>
 				        </div>
 						<a href="#"><div class="logo"></div></a>
 					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#">Projekt</a></li>
-							<li><a href="#">Kontakt</a></li>
-						</ul>
-					</div>
+					<?php include_once('nav.inc.php'); ?>
 				</div>
 			</nav>
 		</header>
