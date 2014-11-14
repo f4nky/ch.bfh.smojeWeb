@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function() {
 	fadeContainer();
 });
 
@@ -6,7 +6,7 @@ $(document).ready(function() {
 	Fade Toggle container when opening menu
 **************************************** */
 function fadeContainer() {
-	$('.navbar-toggle').click(function() {
+	jQuery('.navbar-toggle').click(function($) {
 		$('.container').toggleClass('faded');
 		$('.map-holder-big, .map-holder-small').toggleClass('faded');
 	});

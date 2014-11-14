@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
 	$.validator.setDefaults({
 		submitHandler: function(form) {
 			$.ajax({
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 });
 
-$('#contact-form').validate({
+jQuery('#contact-form').validate({
 	rules: {
 		name: 'required',
 		email: {required: true, email: true},
