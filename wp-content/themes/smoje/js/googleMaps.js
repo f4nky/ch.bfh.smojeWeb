@@ -42,7 +42,7 @@ jQuery(window).resize(function() {
 
 function addSmoje(id, lat, long, titleString, airTemperature, waterTemperature, windDirection, windSpeed) {
 	
-	contentStrings[id] = '<div id="mapContent" style="width: 300px; height: 160px;">'+
+	contentStrings[id] = '<div id="mapContent" style="width: 300px; height: 160px; margin-right: -20px;">'+
 			'<h1 class="mapHeading">' + titleString + '</h1>'+
 			'<div id="mapContent">'+
 				'<a class="measurementDetailLink" href="detail.html?id=' + id + '">Details</a>' +
@@ -54,17 +54,17 @@ function addSmoje(id, lat, long, titleString, airTemperature, waterTemperature, 
 						'<td>' +
 							'<table class="details">' +
 								'<tr>' +
-									'<th>' +
+									'<td>' +
 										'Latitude:' +
-									'</th>' +
+									'</td>' +
 									'<td>' +
 										lat +
 									'</td>' +
 								'<tr>' +
 								'<tr>' +
-									'<th>' +
+									'<td>' +
 										'Longitude:' +
-									'</th>' +
+									'</td>' +
 									'<td>' +
 										long +
 									'</td>' +
@@ -95,17 +95,17 @@ function addSmoje(id, lat, long, titleString, airTemperature, waterTemperature, 
 						'<td>' +
 							'<table class="details">' +
 								'<tr>' +
-									'<th>' +
+									'<td>' +
 										'Direction:' +
-									'</th>' +
+									'</td>' +
 									'<td>' +
 										windDirection +
 									'</td>' +
 								'<tr>' +
 								'<tr>' +
-									'<th>' +
+									'<td>' +
 										'Direction:' +
-									'</th>' +
+									'</td>' +
 									'<td>' +
 										windSpeed + 'm/s' +
 									'</td>' +

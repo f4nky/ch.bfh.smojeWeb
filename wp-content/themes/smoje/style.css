@@ -189,7 +189,8 @@ table.details tr {
 	padding-bottom: 0.5em;	
 }
 
-table.details th {	
+table.details th,
+table.details td {	
 	vertical-align: top;
 	text-align: left;
 	margin: 0;
