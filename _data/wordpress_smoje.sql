@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 20. Nov 2014 um 21:29
+-- Erstellungszeit: 20. Nov 2014 um 21:45
 -- Server Version: 5.6.12
 -- PHP-Version: 5.5.3
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `wp_options` (
   `autoload` varchar(20) NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=257 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=258 ;
 
 --
 -- Daten für Tabelle `wp_options`
@@ -231,7 +231,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (174, 'theme_mods_smoje8', 'a:2:{i:0;b:0;s:16:"sidebars_widgets";a:2:{s:4:"time";i:1415970787;s:4:"data";a:2:{s:19:"wp_inactive_widgets";a:0:{}s:18:"orphaned_widgets_1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}}}}', 'yes'),
 (175, 'recently_activated', 'a:1:{s:44:"wordpress-bootstrap-css/hlt-bootstrapcss.php";i:1416510808;}', 'yes'),
 (195, 'theme_mods_twentyfourteen', 'a:1:{s:16:"sidebars_widgets";a:2:{s:4:"time";i:1415970795;s:4:"data";a:4:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:9:"sidebar-2";a:0:{}s:9:"sidebar-3";a:0:{}}}}', 'yes'),
-(196, 'theme_mods_smoje', 'a:1:{i:0;b:0;}', 'yes'),
+(196, 'theme_mods_smoje', 'a:2:{i:0;b:0;s:18:"nav_menu_locations";a:1:{s:7:"primary";i:2;}}', 'yes'),
 (197, '_site_transient_timeout_available_translations', '1415982156', 'yes'),
 (198, '_site_transient_available_translations', 'a:41:{s:2:"ar";a:8:{s:8:"language";s:2:"ar";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:44:04";s:12:"english_name";s:6:"Arabic";s:11:"native_name";s:14:"العربية";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/ar.zip";s:3:"iso";a:2:{i:1;s:2:"ar";i:2;s:3:"ara";}s:7:"strings";a:1:{s:8:"continue";s:16:"المتابعة";}}s:2:"az";a:8:{s:8:"language";s:2:"az";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-01 13:29:39";s:12:"english_name";s:11:"Azerbaijani";s:11:"native_name";s:16:"Azərbaycan dili";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/az.zip";s:3:"iso";a:2:{i:1;s:2:"az";i:2;s:3:"aze";}s:7:"strings";a:1:{s:8:"continue";s:5:"Davam";}}s:5:"bg_BG";a:8:{s:8:"language";s:5:"bg_BG";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-08 11:17:50";s:12:"english_name";s:9:"Bulgarian";s:11:"native_name";s:18:"Български";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/bg_BG.zip";s:3:"iso";a:2:{i:1;s:2:"bg";i:2;s:3:"bul";}s:7:"strings";a:1:{s:8:"continue";s:22:"Продължение";}}s:5:"bs_BA";a:8:{s:8:"language";s:5:"bs_BA";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:47:16";s:12:"english_name";s:7:"Bosnian";s:11:"native_name";s:8:"Bosanski";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/bs_BA.zip";s:3:"iso";a:2:{i:1;s:2:"bs";i:2;s:3:"bos";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:2:"ca";a:8:{s:8:"language";s:2:"ca";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-19 13:59:46";s:12:"english_name";s:7:"Catalan";s:11:"native_name";s:7:"Català";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/ca.zip";s:3:"iso";a:2:{i:1;s:2:"ca";i:2;s:3:"cat";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"cy";a:8:{s:8:"language";s:2:"cy";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 16:43:49";s:12:"english_name";s:5:"Welsh";s:11:"native_name";s:7:"Cymraeg";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/cy.zip";s:3:"iso";a:2:{i:1;s:2:"cy";i:2;s:3:"cym";}s:7:"strings";a:1:{s:8:"continue";s:6:"Parhau";}}s:5:"da_DK";a:8:{s:8:"language";s:5:"da_DK";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-22 11:59:16";s:12:"english_name";s:6:"Danish";s:11:"native_name";s:5:"Dansk";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/da_DK.zip";s:3:"iso";a:2:{i:1;s:2:"da";i:2;s:3:"dan";}s:7:"strings";a:1:{s:8:"continue";s:12:"Forts&#230;t";}}s:5:"de_DE";a:8:{s:8:"language";s:5:"de_DE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-26 13:41:46";s:12:"english_name";s:6:"German";s:11:"native_name";s:7:"Deutsch";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/de_DE.zip";s:3:"iso";a:1:{i:1;s:2:"de";}s:7:"strings";a:1:{s:8:"continue";s:10:"Fortfahren";}}s:5:"en_CA";a:8:{s:8:"language";s:5:"en_CA";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 00:31:07";s:12:"english_name";s:16:"English (Canada)";s:11:"native_name";s:16:"English (Canada)";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/en_CA.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_GB";a:8:{s:8:"language";s:5:"en_GB";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 08:52:52";s:12:"english_name";s:12:"English (UK)";s:11:"native_name";s:12:"English (UK)";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/en_GB.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"en_AU";a:8:{s:8:"language";s:5:"en_AU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-06 00:56:37";s:12:"english_name";s:19:"English (Australia)";s:11:"native_name";s:19:"English (Australia)";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/en_AU.zip";s:3:"iso";a:3:{i:1;s:2:"en";i:2;s:3:"eng";i:3;s:3:"eng";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continue";}}s:5:"es_ES";a:8:{s:8:"language";s:5:"es_ES";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 17:40:25";s:12:"english_name";s:15:"Spanish (Spain)";s:11:"native_name";s:8:"Español";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/es_ES.zip";s:3:"iso";a:1:{i:1;s:2:"es";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_PE";a:8:{s:8:"language";s:5:"es_PE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 07:49:30";s:12:"english_name";s:14:"Spanish (Peru)";s:11:"native_name";s:17:"Español de Perú";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/es_PE.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"es_CL";a:8:{s:8:"language";s:5:"es_CL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 19:47:01";s:12:"english_name";s:15:"Spanish (Chile)";s:11:"native_name";s:17:"Español de Chile";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/es_CL.zip";s:3:"iso";a:2:{i:1;s:2:"es";i:2;s:3:"spa";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:2:"eu";a:8:{s:8:"language";s:2:"eu";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 06:55:23";s:12:"english_name";s:6:"Basque";s:11:"native_name";s:7:"Euskara";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/eu.zip";s:3:"iso";a:2:{i:1;s:2:"eu";i:2;s:3:"eus";}s:7:"strings";a:1:{s:8:"continue";s:8:"Jarraitu";}}s:5:"fa_IR";a:8:{s:8:"language";s:5:"fa_IR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 15:58:20";s:12:"english_name";s:7:"Persian";s:11:"native_name";s:10:"فارسی";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/fa_IR.zip";s:3:"iso";a:2:{i:1;s:2:"fa";i:2;s:3:"fas";}s:7:"strings";a:1:{s:8:"continue";s:10:"ادامه";}}s:2:"fi";a:8:{s:8:"language";s:2:"fi";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-06 08:32:55";s:12:"english_name";s:7:"Finnish";s:11:"native_name";s:5:"Suomi";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/fi.zip";s:3:"iso";a:2:{i:1;s:2:"fi";i:2;s:3:"fin";}s:7:"strings";a:1:{s:8:"continue";s:5:"Jatka";}}s:5:"fr_FR";a:8:{s:8:"language";s:5:"fr_FR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-04 17:49:48";s:12:"english_name";s:15:"French (France)";s:11:"native_name";s:9:"Français";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/fr_FR.zip";s:3:"iso";a:1:{i:1;s:2:"fr";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuer";}}s:2:"gd";a:8:{s:8:"language";s:2:"gd";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 17:37:43";s:12:"english_name";s:15:"Scottish Gaelic";s:11:"native_name";s:9:"Gàidhlig";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/gd.zip";s:3:"iso";a:3:{i:1;s:2:"gd";i:2;s:3:"gla";i:3;s:3:"gla";}s:7:"strings";a:1:{s:8:"continue";s:15:"Lean air adhart";}}s:5:"gl_ES";a:8:{s:8:"language";s:5:"gl_ES";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 01:18:12";s:12:"english_name";s:8:"Galician";s:11:"native_name";s:6:"Galego";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/gl_ES.zip";s:3:"iso";a:2:{i:1;s:2:"gl";i:2;s:3:"glg";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"he_IL";a:8:{s:8:"language";s:5:"he_IL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 22:57:38";s:12:"english_name";s:6:"Hebrew";s:11:"native_name";s:16:"עִבְרִית";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/he_IL.zip";s:3:"iso";a:1:{i:1;s:2:"he";}s:7:"strings";a:1:{s:8:"continue";s:12:"להמשיך";}}s:2:"hr";a:8:{s:8:"language";s:2:"hr";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-20 14:09:34";s:12:"english_name";s:8:"Croatian";s:11:"native_name";s:8:"Hrvatski";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/hr.zip";s:3:"iso";a:2:{i:1;s:2:"hr";i:2;s:3:"hrv";}s:7:"strings";a:1:{s:8:"continue";s:7:"Nastavi";}}s:5:"hu_HU";a:8:{s:8:"language";s:5:"hu_HU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 19:12:04";s:12:"english_name";s:9:"Hungarian";s:11:"native_name";s:6:"Magyar";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/hu_HU.zip";s:3:"iso";a:2:{i:1;s:2:"hu";i:2;s:3:"hun";}s:7:"strings";a:1:{s:8:"continue";s:7:"Tovább";}}s:5:"id_ID";a:8:{s:8:"language";s:5:"id_ID";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 11:26:19";s:12:"english_name";s:10:"Indonesian";s:11:"native_name";s:16:"Bahasa Indonesia";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/id_ID.zip";s:3:"iso";a:2:{i:1;s:2:"id";i:2;s:3:"ind";}s:7:"strings";a:1:{s:8:"continue";s:9:"Lanjutkan";}}s:5:"it_IT";a:8:{s:8:"language";s:5:"it_IT";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-02 08:24:03";s:12:"english_name";s:7:"Italian";s:11:"native_name";s:8:"Italiano";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/it_IT.zip";s:3:"iso";a:2:{i:1;s:2:"it";i:2;s:3:"ita";}s:7:"strings";a:1:{s:8:"continue";s:8:"Continua";}}s:2:"ja";a:8:{s:8:"language";s:2:"ja";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-21 06:30:27";s:12:"english_name";s:8:"Japanese";s:11:"native_name";s:9:"日本語";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/ja.zip";s:3:"iso";a:1:{i:1;s:2:"ja";}s:7:"strings";a:1:{s:8:"continue";s:9:"続ける";}}s:5:"ko_KR";a:8:{s:8:"language";s:5:"ko_KR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 07:54:33";s:12:"english_name";s:6:"Korean";s:11:"native_name";s:9:"한국어";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/ko_KR.zip";s:3:"iso";a:2:{i:1;s:2:"ko";i:2;s:3:"kor";}s:7:"strings";a:1:{s:8:"continue";s:6:"계속";}}s:5:"my_MM";a:8:{s:8:"language";s:5:"my_MM";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-06 08:41:35";s:12:"english_name";s:7:"Burmese";s:11:"native_name";s:15:"ဗမာစာ";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/my_MM.zip";s:3:"iso";a:2:{i:1;s:2:"my";i:2;s:3:"mya";}s:7:"strings";a:1:{s:8:"continue";s:54:"ဆက်လက်လုပ်ေဆာင်ပါ။";}}s:5:"nb_NO";a:8:{s:8:"language";s:5:"nb_NO";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 20:51:26";s:12:"english_name";s:19:"Norwegian (Bokmål)";s:11:"native_name";s:13:"Norsk bokmål";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/nb_NO.zip";s:3:"iso";a:2:{i:1;s:2:"nb";i:2;s:3:"nob";}s:7:"strings";a:1:{s:8:"continue";s:8:"Fortsett";}}s:5:"nl_NL";a:8:{s:8:"language";s:5:"nl_NL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-17 06:23:19";s:12:"english_name";s:5:"Dutch";s:11:"native_name";s:10:"Nederlands";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/nl_NL.zip";s:3:"iso";a:2:{i:1;s:2:"nl";i:2;s:3:"nld";}s:7:"strings";a:1:{s:8:"continue";s:8:"Doorgaan";}}s:5:"pl_PL";a:8:{s:8:"language";s:5:"pl_PL";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-03 17:44:34";s:12:"english_name";s:6:"Polish";s:11:"native_name";s:6:"Polski";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/pl_PL.zip";s:3:"iso";a:2:{i:1;s:2:"pl";i:2;s:3:"pol";}s:7:"strings";a:1:{s:8:"continue";s:9:"Kontynuuj";}}s:5:"pt_PT";a:8:{s:8:"language";s:5:"pt_PT";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-29 15:27:01";s:12:"english_name";s:21:"Portuguese (Portugal)";s:11:"native_name";s:10:"Português";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/pt_PT.zip";s:3:"iso";a:1:{i:1;s:2:"pt";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"pt_BR";a:8:{s:8:"language";s:5:"pt_BR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-30 13:29:44";s:12:"english_name";s:19:"Portuguese (Brazil)";s:11:"native_name";s:20:"Português do Brasil";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/pt_BR.zip";s:3:"iso";a:2:{i:1;s:2:"pt";i:2;s:3:"por";}s:7:"strings";a:1:{s:8:"continue";s:9:"Continuar";}}s:5:"ru_RU";a:8:{s:8:"language";s:5:"ru_RU";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-21 12:32:07";s:12:"english_name";s:7:"Russian";s:11:"native_name";s:14:"Русский";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/ru_RU.zip";s:3:"iso";a:2:{i:1;s:2:"ru";i:2;s:3:"rus";}s:7:"strings";a:1:{s:8:"continue";s:20:"Продолжить";}}s:5:"sk_SK";a:8:{s:8:"language";s:5:"sk_SK";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-20 13:05:09";s:12:"english_name";s:6:"Slovak";s:11:"native_name";s:11:"Slovenčina";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/sk_SK.zip";s:3:"iso";a:2:{i:1;s:2:"sk";i:2;s:3:"slk";}s:7:"strings";a:1:{s:8:"continue";s:12:"Pokračovať";}}s:5:"sr_RS";a:8:{s:8:"language";s:5:"sr_RS";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-04 15:37:38";s:12:"english_name";s:7:"Serbian";s:11:"native_name";s:23:"Српски језик";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/sr_RS.zip";s:3:"iso";a:2:{i:1;s:2:"sr";i:2;s:3:"srp";}s:7:"strings";a:1:{s:8:"continue";s:14:"Настави";}}s:5:"sv_SE";a:8:{s:8:"language";s:5:"sv_SE";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-11 20:39:56";s:12:"english_name";s:7:"Swedish";s:11:"native_name";s:7:"Svenska";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/sv_SE.zip";s:3:"iso";a:2:{i:1;s:2:"sv";i:2;s:3:"swe";}s:7:"strings";a:1:{s:8:"continue";s:9:"Fortsätt";}}s:2:"th";a:8:{s:8:"language";s:2:"th";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-10-09 03:43:17";s:12:"english_name";s:4:"Thai";s:11:"native_name";s:9:"ไทย";s:7:"package";s:59:"https://downloads.wordpress.org/translation/core/4.0/th.zip";s:3:"iso";a:2:{i:1;s:2:"th";i:2;s:3:"tha";}s:7:"strings";a:1:{s:8:"continue";s:15:"ต่อไป";}}s:5:"tr_TR";a:8:{s:8:"language";s:5:"tr_TR";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 17:57:59";s:12:"english_name";s:7:"Turkish";s:11:"native_name";s:8:"Türkçe";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/tr_TR.zip";s:3:"iso";a:2:{i:1;s:2:"tr";i:2;s:3:"tur";}s:7:"strings";a:1:{s:8:"continue";s:5:"Devam";}}s:5:"zh_CN";a:8:{s:8:"language";s:5:"zh_CN";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 00:41:46";s:12:"english_name";s:15:"Chinese (China)";s:11:"native_name";s:12:"简体中文";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/zh_CN.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"继续";}}s:5:"zh_TW";a:8:{s:8:"language";s:5:"zh_TW";s:7:"version";s:3:"4.0";s:7:"updated";s:19:"2014-09-05 06:58:31";s:12:"english_name";s:16:"Chinese (Taiwan)";s:11:"native_name";s:12:"繁體中文";s:7:"package";s:62:"https://downloads.wordpress.org/translation/core/4.0/zh_TW.zip";s:3:"iso";a:2:{i:1;s:2:"zh";i:2;s:3:"zho";}s:7:"strings";a:1:{s:8:"continue";s:6:"繼續";}}}', 'yes'),
 (208, '_site_transient_update_plugins', 'O:8:"stdClass":5:{s:12:"last_checked";i:1416514413;s:7:"checked";a:1:{s:44:"wordpress-bootstrap-css/hlt-bootstrapcss.php";s:7:"3.2.0-4";}s:8:"response";a:0:{}s:12:"translations";a:0:{}s:9:"no_update";a:1:{s:44:"wordpress-bootstrap-css/hlt-bootstrapcss.php";O:8:"stdClass":6:{s:2:"id";s:5:"25323";s:4:"slug";s:23:"wordpress-bootstrap-css";s:6:"plugin";s:44:"wordpress-bootstrap-css/hlt-bootstrapcss.php";s:11:"new_version";s:7:"3.2.0-4";s:3:"url";s:54:"https://wordpress.org/plugins/wordpress-bootstrap-css/";s:7:"package";s:74:"https://downloads.wordpress.org/plugin/wordpress-bootstrap-css.3.2.0-4.zip";}}}', 'yes'),
@@ -263,7 +263,8 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (248, '_site_transient_timeout_theme_roots', '1416516026', 'yes'),
 (249, '_site_transient_theme_roots', 'a:4:{s:5:"smoje";s:7:"/themes";s:14:"twentyfourteen";s:7:"/themes";s:14:"twentythirteen";s:7:"/themes";s:12:"twentytwelve";s:7:"/themes";}', 'yes'),
 (255, '_site_transient_timeout_poptags_40cd750bba9870f18aada2478b24840a', '1416526110', 'yes'),
-(256, '_site_transient_poptags_40cd750bba9870f18aada2478b24840a', 'a:40:{s:6:"widget";a:3:{s:4:"name";s:6:"widget";s:4:"slug";s:6:"widget";s:5:"count";s:4:"4690";}s:4:"post";a:3:{s:4:"name";s:4:"Post";s:4:"slug";s:4:"post";s:5:"count";s:4:"2907";}s:6:"plugin";a:3:{s:4:"name";s:6:"plugin";s:4:"slug";s:6:"plugin";s:5:"count";s:4:"2823";}s:5:"admin";a:3:{s:4:"name";s:5:"admin";s:4:"slug";s:5:"admin";s:5:"count";s:4:"2344";}s:5:"posts";a:3:{s:4:"name";s:5:"posts";s:4:"slug";s:5:"posts";s:5:"count";s:4:"2238";}s:7:"sidebar";a:3:{s:4:"name";s:7:"sidebar";s:4:"slug";s:7:"sidebar";s:5:"count";s:4:"1804";}s:6:"google";a:3:{s:4:"name";s:6:"google";s:4:"slug";s:6:"google";s:5:"count";s:4:"1619";}s:7:"twitter";a:3:{s:4:"name";s:7:"twitter";s:4:"slug";s:7:"twitter";s:5:"count";s:4:"1591";}s:6:"images";a:3:{s:4:"name";s:6:"images";s:4:"slug";s:6:"images";s:5:"count";s:4:"1569";}s:8:"comments";a:3:{s:4:"name";s:8:"comments";s:4:"slug";s:8:"comments";s:5:"count";s:4:"1533";}s:4:"page";a:3:{s:4:"name";s:4:"page";s:4:"slug";s:4:"page";s:5:"count";s:4:"1496";}s:9:"shortcode";a:3:{s:4:"name";s:9:"shortcode";s:4:"slug";s:9:"shortcode";s:5:"count";s:4:"1485";}s:5:"image";a:3:{s:4:"name";s:5:"image";s:4:"slug";s:5:"image";s:5:"count";s:4:"1403";}s:8:"facebook";a:3:{s:4:"name";s:8:"Facebook";s:4:"slug";s:8:"facebook";s:5:"count";s:4:"1236";}s:3:"seo";a:3:{s:4:"name";s:3:"seo";s:4:"slug";s:3:"seo";s:5:"count";s:4:"1183";}s:5:"links";a:3:{s:4:"name";s:5:"links";s:4:"slug";s:5:"links";s:5:"count";s:4:"1133";}s:9:"wordpress";a:3:{s:4:"name";s:9:"wordpress";s:4:"slug";s:9:"wordpress";s:5:"count";s:4:"1081";}s:7:"gallery";a:3:{s:4:"name";s:7:"gallery";s:4:"slug";s:7:"gallery";s:5:"count";s:4:"1027";}s:6:"social";a:3:{s:4:"name";s:6:"social";s:4:"slug";s:6:"social";s:5:"count";s:4:"1018";}s:7:"widgets";a:3:{s:4:"name";s:7:"widgets";s:4:"slug";s:7:"widgets";s:5:"count";s:3:"849";}s:5:"email";a:3:{s:4:"name";s:5:"email";s:4:"slug";s:5:"email";s:5:"count";s:3:"844";}s:5:"pages";a:3:{s:4:"name";s:5:"pages";s:4:"slug";s:5:"pages";s:5:"count";s:3:"838";}s:3:"rss";a:3:{s:4:"name";s:3:"rss";s:4:"slug";s:3:"rss";s:5:"count";s:3:"806";}s:6:"jquery";a:3:{s:4:"name";s:6:"jquery";s:4:"slug";s:6:"jquery";s:5:"count";s:3:"798";}s:5:"media";a:3:{s:4:"name";s:5:"media";s:4:"slug";s:5:"media";s:5:"count";s:3:"747";}s:5:"video";a:3:{s:4:"name";s:5:"video";s:4:"slug";s:5:"video";s:5:"count";s:3:"710";}s:4:"ajax";a:3:{s:4:"name";s:4:"AJAX";s:4:"slug";s:4:"ajax";s:5:"count";s:3:"709";}s:10:"javascript";a:3:{s:4:"name";s:10:"javascript";s:4:"slug";s:10:"javascript";s:5:"count";s:3:"673";}s:7:"content";a:3:{s:4:"name";s:7:"content";s:4:"slug";s:7:"content";s:5:"count";s:3:"663";}s:5:"login";a:3:{s:4:"name";s:5:"login";s:4:"slug";s:5:"login";s:5:"count";s:3:"631";}s:5:"photo";a:3:{s:4:"name";s:5:"photo";s:4:"slug";s:5:"photo";s:5:"count";s:3:"626";}s:10:"buddypress";a:3:{s:4:"name";s:10:"buddypress";s:4:"slug";s:10:"buddypress";s:5:"count";s:3:"623";}s:4:"feed";a:3:{s:4:"name";s:4:"feed";s:4:"slug";s:4:"feed";s:5:"count";s:3:"619";}s:4:"link";a:3:{s:4:"name";s:4:"link";s:4:"slug";s:4:"link";s:5:"count";s:3:"613";}s:6:"photos";a:3:{s:4:"name";s:6:"photos";s:4:"slug";s:6:"photos";s:5:"count";s:3:"600";}s:11:"woocommerce";a:3:{s:4:"name";s:11:"woocommerce";s:4:"slug";s:11:"woocommerce";s:5:"count";s:3:"572";}s:7:"youtube";a:3:{s:4:"name";s:7:"youtube";s:4:"slug";s:7:"youtube";s:5:"count";s:3:"564";}s:8:"category";a:3:{s:4:"name";s:8:"category";s:4:"slug";s:8:"category";s:5:"count";s:3:"561";}s:4:"spam";a:3:{s:4:"name";s:4:"spam";s:4:"slug";s:4:"spam";s:5:"count";s:3:"554";}s:5:"share";a:3:{s:4:"name";s:5:"Share";s:4:"slug";s:5:"share";s:5:"count";s:3:"553";}}', 'yes');
+(256, '_site_transient_poptags_40cd750bba9870f18aada2478b24840a', 'a:40:{s:6:"widget";a:3:{s:4:"name";s:6:"widget";s:4:"slug";s:6:"widget";s:5:"count";s:4:"4690";}s:4:"post";a:3:{s:4:"name";s:4:"Post";s:4:"slug";s:4:"post";s:5:"count";s:4:"2907";}s:6:"plugin";a:3:{s:4:"name";s:6:"plugin";s:4:"slug";s:6:"plugin";s:5:"count";s:4:"2823";}s:5:"admin";a:3:{s:4:"name";s:5:"admin";s:4:"slug";s:5:"admin";s:5:"count";s:4:"2344";}s:5:"posts";a:3:{s:4:"name";s:5:"posts";s:4:"slug";s:5:"posts";s:5:"count";s:4:"2238";}s:7:"sidebar";a:3:{s:4:"name";s:7:"sidebar";s:4:"slug";s:7:"sidebar";s:5:"count";s:4:"1804";}s:6:"google";a:3:{s:4:"name";s:6:"google";s:4:"slug";s:6:"google";s:5:"count";s:4:"1619";}s:7:"twitter";a:3:{s:4:"name";s:7:"twitter";s:4:"slug";s:7:"twitter";s:5:"count";s:4:"1591";}s:6:"images";a:3:{s:4:"name";s:6:"images";s:4:"slug";s:6:"images";s:5:"count";s:4:"1569";}s:8:"comments";a:3:{s:4:"name";s:8:"comments";s:4:"slug";s:8:"comments";s:5:"count";s:4:"1533";}s:4:"page";a:3:{s:4:"name";s:4:"page";s:4:"slug";s:4:"page";s:5:"count";s:4:"1496";}s:9:"shortcode";a:3:{s:4:"name";s:9:"shortcode";s:4:"slug";s:9:"shortcode";s:5:"count";s:4:"1485";}s:5:"image";a:3:{s:4:"name";s:5:"image";s:4:"slug";s:5:"image";s:5:"count";s:4:"1403";}s:8:"facebook";a:3:{s:4:"name";s:8:"Facebook";s:4:"slug";s:8:"facebook";s:5:"count";s:4:"1236";}s:3:"seo";a:3:{s:4:"name";s:3:"seo";s:4:"slug";s:3:"seo";s:5:"count";s:4:"1183";}s:5:"links";a:3:{s:4:"name";s:5:"links";s:4:"slug";s:5:"links";s:5:"count";s:4:"1133";}s:9:"wordpress";a:3:{s:4:"name";s:9:"wordpress";s:4:"slug";s:9:"wordpress";s:5:"count";s:4:"1081";}s:7:"gallery";a:3:{s:4:"name";s:7:"gallery";s:4:"slug";s:7:"gallery";s:5:"count";s:4:"1027";}s:6:"social";a:3:{s:4:"name";s:6:"social";s:4:"slug";s:6:"social";s:5:"count";s:4:"1018";}s:7:"widgets";a:3:{s:4:"name";s:7:"widgets";s:4:"slug";s:7:"widgets";s:5:"count";s:3:"849";}s:5:"email";a:3:{s:4:"name";s:5:"email";s:4:"slug";s:5:"email";s:5:"count";s:3:"844";}s:5:"pages";a:3:{s:4:"name";s:5:"pages";s:4:"slug";s:5:"pages";s:5:"count";s:3:"838";}s:3:"rss";a:3:{s:4:"name";s:3:"rss";s:4:"slug";s:3:"rss";s:5:"count";s:3:"806";}s:6:"jquery";a:3:{s:4:"name";s:6:"jquery";s:4:"slug";s:6:"jquery";s:5:"count";s:3:"798";}s:5:"media";a:3:{s:4:"name";s:5:"media";s:4:"slug";s:5:"media";s:5:"count";s:3:"747";}s:5:"video";a:3:{s:4:"name";s:5:"video";s:4:"slug";s:5:"video";s:5:"count";s:3:"710";}s:4:"ajax";a:3:{s:4:"name";s:4:"AJAX";s:4:"slug";s:4:"ajax";s:5:"count";s:3:"709";}s:10:"javascript";a:3:{s:4:"name";s:10:"javascript";s:4:"slug";s:10:"javascript";s:5:"count";s:3:"673";}s:7:"content";a:3:{s:4:"name";s:7:"content";s:4:"slug";s:7:"content";s:5:"count";s:3:"663";}s:5:"login";a:3:{s:4:"name";s:5:"login";s:4:"slug";s:5:"login";s:5:"count";s:3:"631";}s:5:"photo";a:3:{s:4:"name";s:5:"photo";s:4:"slug";s:5:"photo";s:5:"count";s:3:"626";}s:10:"buddypress";a:3:{s:4:"name";s:10:"buddypress";s:4:"slug";s:10:"buddypress";s:5:"count";s:3:"623";}s:4:"feed";a:3:{s:4:"name";s:4:"feed";s:4:"slug";s:4:"feed";s:5:"count";s:3:"619";}s:4:"link";a:3:{s:4:"name";s:4:"link";s:4:"slug";s:4:"link";s:5:"count";s:3:"613";}s:6:"photos";a:3:{s:4:"name";s:6:"photos";s:4:"slug";s:6:"photos";s:5:"count";s:3:"600";}s:11:"woocommerce";a:3:{s:4:"name";s:11:"woocommerce";s:4:"slug";s:11:"woocommerce";s:5:"count";s:3:"572";}s:7:"youtube";a:3:{s:4:"name";s:7:"youtube";s:4:"slug";s:7:"youtube";s:5:"count";s:3:"564";}s:8:"category";a:3:{s:4:"name";s:8:"category";s:4:"slug";s:8:"category";s:5:"count";s:3:"561";}s:4:"spam";a:3:{s:4:"name";s:4:"spam";s:4:"slug";s:4:"spam";s:5:"count";s:3:"554";}s:5:"share";a:3:{s:4:"name";s:5:"Share";s:4:"slug";s:5:"share";s:5:"count";s:3:"553";}}', 'yes'),
+(257, 'nav_menu_options', 'a:2:{i:0;b:0;s:8:"auto_add";a:0:{}}', 'yes');
 
 -- --------------------------------------------------------
 
@@ -279,7 +280,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=123 ;
 
 --
 -- Daten für Tabelle `wp_postmeta`
@@ -296,7 +297,111 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (11, 10, '_edit_lock', '1415976314:1'),
 (12, 10, '_wp_page_template', 'details.php'),
 (13, 14, '_wp_attached_file', '2014/11/smoje.mp4'),
-(14, 14, '_wp_attachment_metadata', 'a:9:{s:8:"filesize";i:16533225;s:9:"mime_type";s:15:"video/quicktime";s:6:"length";i:64;s:16:"length_formatted";s:4:"1:04";s:5:"width";i:854;s:6:"height";i:480;s:10:"fileformat";s:3:"mp4";s:10:"dataformat";s:9:"quicktime";s:5:"audio";a:7:{s:10:"dataformat";s:3:"mp4";s:5:"codec";s:19:"ISO/IEC 14496-3 AAC";s:11:"sample_rate";d:48000;s:8:"channels";i:2;s:15:"bits_per_sample";i:16;s:8:"lossless";b:0;s:11:"channelmode";s:6:"stereo";}}');
+(14, 14, '_wp_attachment_metadata', 'a:9:{s:8:"filesize";i:16533225;s:9:"mime_type";s:15:"video/quicktime";s:6:"length";i:64;s:16:"length_formatted";s:4:"1:04";s:5:"width";i:854;s:6:"height";i:480;s:10:"fileformat";s:3:"mp4";s:10:"dataformat";s:9:"quicktime";s:5:"audio";a:7:{s:10:"dataformat";s:3:"mp4";s:5:"codec";s:19:"ISO/IEC 14496-3 AAC";s:11:"sample_rate";d:48000;s:8:"channels";i:2;s:15:"bits_per_sample";i:16;s:8:"lossless";b:0;s:11:"channelmode";s:6:"stereo";}}'),
+(15, 18, '_menu_item_type', 'custom'),
+(16, 18, '_menu_item_menu_item_parent', '0'),
+(17, 18, '_menu_item_object_id', '18'),
+(18, 18, '_menu_item_object', 'custom'),
+(19, 18, '_menu_item_target', ''),
+(20, 18, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(21, 18, '_menu_item_xfn', ''),
+(22, 18, '_menu_item_url', 'http://localhost/ch.bfh.smojeWeb/'),
+(23, 18, '_menu_item_orphaned', '1416515823'),
+(24, 19, '_menu_item_type', 'post_type'),
+(25, 19, '_menu_item_menu_item_parent', '0'),
+(26, 19, '_menu_item_object_id', '10'),
+(27, 19, '_menu_item_object', 'page'),
+(28, 19, '_menu_item_target', ''),
+(29, 19, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(30, 19, '_menu_item_xfn', ''),
+(31, 19, '_menu_item_url', ''),
+(32, 19, '_menu_item_orphaned', '1416515823'),
+(33, 20, '_menu_item_type', 'post_type'),
+(34, 20, '_menu_item_menu_item_parent', '0'),
+(35, 20, '_menu_item_object_id', '5'),
+(36, 20, '_menu_item_object', 'page'),
+(37, 20, '_menu_item_target', ''),
+(38, 20, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(39, 20, '_menu_item_xfn', ''),
+(40, 20, '_menu_item_url', ''),
+(41, 20, '_menu_item_orphaned', '1416515823'),
+(42, 21, '_menu_item_type', 'post_type'),
+(43, 21, '_menu_item_menu_item_parent', '0'),
+(44, 21, '_menu_item_object_id', '8'),
+(45, 21, '_menu_item_object', 'page'),
+(46, 21, '_menu_item_target', ''),
+(47, 21, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(48, 21, '_menu_item_xfn', ''),
+(49, 21, '_menu_item_url', ''),
+(50, 21, '_menu_item_orphaned', '1416515823'),
+(51, 22, '_menu_item_type', 'custom'),
+(52, 22, '_menu_item_menu_item_parent', '0'),
+(53, 22, '_menu_item_object_id', '22'),
+(54, 22, '_menu_item_object', 'custom'),
+(55, 22, '_menu_item_target', ''),
+(56, 22, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(57, 22, '_menu_item_xfn', ''),
+(58, 22, '_menu_item_url', 'http://localhost/ch.bfh.smojeWeb/'),
+(59, 22, '_menu_item_orphaned', '1416515828'),
+(60, 23, '_menu_item_type', 'post_type'),
+(61, 23, '_menu_item_menu_item_parent', '0'),
+(62, 23, '_menu_item_object_id', '10'),
+(63, 23, '_menu_item_object', 'page'),
+(64, 23, '_menu_item_target', ''),
+(65, 23, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(66, 23, '_menu_item_xfn', ''),
+(67, 23, '_menu_item_url', ''),
+(68, 23, '_menu_item_orphaned', '1416515828'),
+(69, 24, '_menu_item_type', 'post_type'),
+(70, 24, '_menu_item_menu_item_parent', '0'),
+(71, 24, '_menu_item_object_id', '5'),
+(72, 24, '_menu_item_object', 'page'),
+(73, 24, '_menu_item_target', ''),
+(74, 24, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(75, 24, '_menu_item_xfn', ''),
+(76, 24, '_menu_item_url', ''),
+(77, 24, '_menu_item_orphaned', '1416515828'),
+(78, 25, '_menu_item_type', 'post_type'),
+(79, 25, '_menu_item_menu_item_parent', '0'),
+(80, 25, '_menu_item_object_id', '8'),
+(81, 25, '_menu_item_object', 'page'),
+(82, 25, '_menu_item_target', ''),
+(83, 25, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(84, 25, '_menu_item_xfn', ''),
+(85, 25, '_menu_item_url', ''),
+(86, 25, '_menu_item_orphaned', '1416515828'),
+(87, 26, '_menu_item_type', 'custom'),
+(88, 26, '_menu_item_menu_item_parent', '0'),
+(89, 26, '_menu_item_object_id', '26'),
+(90, 26, '_menu_item_object', 'custom'),
+(91, 26, '_menu_item_target', ''),
+(92, 26, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(93, 26, '_menu_item_xfn', ''),
+(94, 26, '_menu_item_url', 'http://localhost/ch.bfh.smojeWeb/'),
+(96, 27, '_menu_item_type', 'post_type'),
+(97, 27, '_menu_item_menu_item_parent', '0'),
+(98, 27, '_menu_item_object_id', '10'),
+(99, 27, '_menu_item_object', 'page'),
+(100, 27, '_menu_item_target', ''),
+(101, 27, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(102, 27, '_menu_item_xfn', ''),
+(103, 27, '_menu_item_url', ''),
+(105, 28, '_menu_item_type', 'post_type'),
+(106, 28, '_menu_item_menu_item_parent', '0'),
+(107, 28, '_menu_item_object_id', '5'),
+(108, 28, '_menu_item_object', 'page'),
+(109, 28, '_menu_item_target', ''),
+(110, 28, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(111, 28, '_menu_item_xfn', ''),
+(112, 28, '_menu_item_url', ''),
+(114, 29, '_menu_item_type', 'post_type'),
+(115, 29, '_menu_item_menu_item_parent', '0'),
+(116, 29, '_menu_item_object_id', '8'),
+(117, 29, '_menu_item_object', 'page'),
+(118, 29, '_menu_item_target', ''),
+(119, 29, '_menu_item_classes', 'a:1:{i:0;s:0:"";}'),
+(120, 29, '_menu_item_xfn', ''),
+(121, 29, '_menu_item_url', '');
 
 -- --------------------------------------------------------
 
@@ -333,7 +438,7 @@ CREATE TABLE IF NOT EXISTS `wp_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Daten für Tabelle `wp_posts`
@@ -353,7 +458,19 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (14, 1, '2014-11-20 22:06:59', '2014-11-20 20:06:59', 'Erklärung, was eine Smoje ist und was sie alles kann.', 'Was macht die Smoje?', 'Smoje-Werbespot', 'inherit', 'open', 'open', '', 'smoje', '', '', '2014-11-20 22:08:39', '2014-11-20 20:08:39', '', 8, 'http://localhost/ch.bfh.smojeWeb/wp-content/uploads/2014/11/smoje.mp4', 0, 'attachment', 'video/mp4', 0),
 (15, 1, '2014-11-20 22:08:42', '2014-11-20 20:08:42', '[video width="854" height="480" mp4="http://localhost/ch.bfh.smojeWeb/wp-content/uploads/2014/11/smoje.mp4"][/video]\r\n\r\nDas Wort "Smoje" ist eine Kombination der Worte "smart" und "Boje" - das Wort "Smoje" soll also der Begriff für eine intelligente / smarte Boje sein.\r\n\r\nDoch was steht wirklich hinter diesem Begriff beziehungsweise hinter der URL www.smoje.ch?\r\n\r\n<strong>Smoje</strong> ist ein <strong>Studentenprojekt</strong> der Berner Fachhochschule (BFH), Departement Technik und Informatik. Im 3. Studienjahr wird das Fach "Mobile Computing" angeboten, welches sich diesmal mit der Thematik des sog. Internet of Things (IoT) beschäftigt.\r\n\r\nIm Rahmen dieses Kurses konzipieren und entwickeln wir intelligente Bojen, welche eine Vielzahl von Parametern messen können (z.B. Position, Temperatur von Wasser und Luft, Windgeschwindigkeit und Windrichtung, Wellengang, Drift uvm). Ebenso können die smoje untereinander wie auch mit uns über''s Internet Verbindung aufnehmen. Sie sind eben die intelligenten, schwimmenden Stationen, welche uns Menschen eine Vielzahl von Diensten und Vorteilen anbieten.\r\n\r\nWir planen, im 2015 fünf Smoje im Bielersee einzuwassern, um Erfahrungen zu gewinnen und bereits erste wichtige Messdaten unseren Partnern zur Verfügung stellen zu können.\r\n\r\nSie als interessierter Besucher möchten sicher auch gerne die aktuelle Position sowie einige Informationen der verschiedenen Smoje bekommen. Besuchen Sie die Smoje Homepage, wo die aktuelle Positionen der fünf Smoje wie auch wichtige Parameter angezeigt werden (bitte auf Smoje-Symbol klicken).\r\n\r\nJa, und Partner dieses Projektes können Sie auch werden! Bereits haben verschiedene Firmen und Behörden ihr Interesse an diesem Projekt angemeldet. Wir werden zu späterer Zeit mehr darüber informieren.\r\n\r\nHaben wir Ihr Interesse geweckt? Sie können jederzeit mit uns Kontakt aufnehmen.', 'Projekt', '', 'inherit', 'open', 'open', '', '8-revision-v1', '', '', '2014-11-20 22:08:42', '2014-11-20 20:08:42', '', 8, 'http://localhost/ch.bfh.smojeWeb/8-revision-v1/', 0, 'revision', '', 0),
 (16, 1, '2014-11-20 22:10:25', '2014-11-20 20:10:25', '[video width="854" height="400" mp4="http://localhost/ch.bfh.smojeWeb/wp-content/uploads/2014/11/smoje.mp4"][/video]\r\nDas Wort "Smoje" ist eine Kombination der Worte "smart" und "Boje" - das Wort "Smoje" soll also der Begriff für eine intelligente / smarte Boje sein.\r\n\r\nDoch was steht wirklich hinter diesem Begriff beziehungsweise hinter der URL www.smoje.ch?\r\n\r\n<strong>Smoje</strong> ist ein <strong>Studentenprojekt</strong> der Berner Fachhochschule (BFH), Departement Technik und Informatik. Im 3. Studienjahr wird das Fach "Mobile Computing" angeboten, welches sich diesmal mit der Thematik des sog. Internet of Things (IoT) beschäftigt.\r\n\r\nIm Rahmen dieses Kurses konzipieren und entwickeln wir intelligente Bojen, welche eine Vielzahl von Parametern messen können (z.B. Position, Temperatur von Wasser und Luft, Windgeschwindigkeit und Windrichtung, Wellengang, Drift uvm). Ebenso können die smoje untereinander wie auch mit uns über''s Internet Verbindung aufnehmen. Sie sind eben die intelligenten, schwimmenden Stationen, welche uns Menschen eine Vielzahl von Diensten und Vorteilen anbieten.\r\n\r\nWir planen, im 2015 fünf Smoje im Bielersee einzuwassern, um Erfahrungen zu gewinnen und bereits erste wichtige Messdaten unseren Partnern zur Verfügung stellen zu können.\r\n\r\nSie als interessierter Besucher möchten sicher auch gerne die aktuelle Position sowie einige Informationen der verschiedenen Smoje bekommen. Besuchen Sie die Smoje Homepage, wo die aktuelle Positionen der fünf Smoje wie auch wichtige Parameter angezeigt werden (bitte auf Smoje-Symbol klicken).\r\n\r\nJa, und Partner dieses Projektes können Sie auch werden! Bereits haben verschiedene Firmen und Behörden ihr Interesse an diesem Projekt angemeldet. Wir werden zu späterer Zeit mehr darüber informieren.\r\n\r\nHaben wir Ihr Interesse geweckt? Sie können jederzeit mit uns Kontakt aufnehmen.', 'Projekt', '', 'inherit', 'open', 'open', '', '8-revision-v1', '', '', '2014-11-20 22:10:25', '2014-11-20 20:10:25', '', 8, 'http://localhost/ch.bfh.smojeWeb/8-revision-v1/', 0, 'revision', '', 0),
-(17, 1, '2014-11-20 22:10:43', '2014-11-20 20:10:43', '[video width="854" height="380" mp4="http://localhost/ch.bfh.smojeWeb/wp-content/uploads/2014/11/smoje.mp4"][/video]\r\nDas Wort "Smoje" ist eine Kombination der Worte "smart" und "Boje" - das Wort "Smoje" soll also der Begriff für eine intelligente / smarte Boje sein.\r\n\r\nDoch was steht wirklich hinter diesem Begriff beziehungsweise hinter der URL www.smoje.ch?\r\n\r\n<strong>Smoje</strong> ist ein <strong>Studentenprojekt</strong> der Berner Fachhochschule (BFH), Departement Technik und Informatik. Im 3. Studienjahr wird das Fach "Mobile Computing" angeboten, welches sich diesmal mit der Thematik des sog. Internet of Things (IoT) beschäftigt.\r\n\r\nIm Rahmen dieses Kurses konzipieren und entwickeln wir intelligente Bojen, welche eine Vielzahl von Parametern messen können (z.B. Position, Temperatur von Wasser und Luft, Windgeschwindigkeit und Windrichtung, Wellengang, Drift uvm). Ebenso können die smoje untereinander wie auch mit uns über''s Internet Verbindung aufnehmen. Sie sind eben die intelligenten, schwimmenden Stationen, welche uns Menschen eine Vielzahl von Diensten und Vorteilen anbieten.\r\n\r\nWir planen, im 2015 fünf Smoje im Bielersee einzuwassern, um Erfahrungen zu gewinnen und bereits erste wichtige Messdaten unseren Partnern zur Verfügung stellen zu können.\r\n\r\nSie als interessierter Besucher möchten sicher auch gerne die aktuelle Position sowie einige Informationen der verschiedenen Smoje bekommen. Besuchen Sie die Smoje Homepage, wo die aktuelle Positionen der fünf Smoje wie auch wichtige Parameter angezeigt werden (bitte auf Smoje-Symbol klicken).\r\n\r\nJa, und Partner dieses Projektes können Sie auch werden! Bereits haben verschiedene Firmen und Behörden ihr Interesse an diesem Projekt angemeldet. Wir werden zu späterer Zeit mehr darüber informieren.\r\n\r\nHaben wir Ihr Interesse geweckt? Sie können jederzeit mit uns Kontakt aufnehmen.', 'Projekt', '', 'inherit', 'open', 'open', '', '8-revision-v1', '', '', '2014-11-20 22:10:43', '2014-11-20 20:10:43', '', 8, 'http://localhost/ch.bfh.smojeWeb/8-revision-v1/', 0, 'revision', '', 0);
+(17, 1, '2014-11-20 22:10:43', '2014-11-20 20:10:43', '[video width="854" height="380" mp4="http://localhost/ch.bfh.smojeWeb/wp-content/uploads/2014/11/smoje.mp4"][/video]\r\nDas Wort "Smoje" ist eine Kombination der Worte "smart" und "Boje" - das Wort "Smoje" soll also der Begriff für eine intelligente / smarte Boje sein.\r\n\r\nDoch was steht wirklich hinter diesem Begriff beziehungsweise hinter der URL www.smoje.ch?\r\n\r\n<strong>Smoje</strong> ist ein <strong>Studentenprojekt</strong> der Berner Fachhochschule (BFH), Departement Technik und Informatik. Im 3. Studienjahr wird das Fach "Mobile Computing" angeboten, welches sich diesmal mit der Thematik des sog. Internet of Things (IoT) beschäftigt.\r\n\r\nIm Rahmen dieses Kurses konzipieren und entwickeln wir intelligente Bojen, welche eine Vielzahl von Parametern messen können (z.B. Position, Temperatur von Wasser und Luft, Windgeschwindigkeit und Windrichtung, Wellengang, Drift uvm). Ebenso können die smoje untereinander wie auch mit uns über''s Internet Verbindung aufnehmen. Sie sind eben die intelligenten, schwimmenden Stationen, welche uns Menschen eine Vielzahl von Diensten und Vorteilen anbieten.\r\n\r\nWir planen, im 2015 fünf Smoje im Bielersee einzuwassern, um Erfahrungen zu gewinnen und bereits erste wichtige Messdaten unseren Partnern zur Verfügung stellen zu können.\r\n\r\nSie als interessierter Besucher möchten sicher auch gerne die aktuelle Position sowie einige Informationen der verschiedenen Smoje bekommen. Besuchen Sie die Smoje Homepage, wo die aktuelle Positionen der fünf Smoje wie auch wichtige Parameter angezeigt werden (bitte auf Smoje-Symbol klicken).\r\n\r\nJa, und Partner dieses Projektes können Sie auch werden! Bereits haben verschiedene Firmen und Behörden ihr Interesse an diesem Projekt angemeldet. Wir werden zu späterer Zeit mehr darüber informieren.\r\n\r\nHaben wir Ihr Interesse geweckt? Sie können jederzeit mit uns Kontakt aufnehmen.', 'Projekt', '', 'inherit', 'open', 'open', '', '8-revision-v1', '', '', '2014-11-20 22:10:43', '2014-11-20 20:10:43', '', 8, 'http://localhost/ch.bfh.smojeWeb/8-revision-v1/', 0, 'revision', '', 0),
+(18, 1, '2014-11-20 22:37:03', '0000-00-00 00:00:00', '', 'Startseite', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:03', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=18', 1, 'nav_menu_item', '', 0),
+(19, 1, '2014-11-20 22:37:03', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:03', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=19', 1, 'nav_menu_item', '', 0),
+(20, 1, '2014-11-20 22:37:03', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:03', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=20', 1, 'nav_menu_item', '', 0),
+(21, 1, '2014-11-20 22:37:03', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:03', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=21', 1, 'nav_menu_item', '', 0),
+(22, 1, '2014-11-20 22:37:08', '0000-00-00 00:00:00', '', 'Startseite', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:08', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=22', 1, 'nav_menu_item', '', 0),
+(23, 1, '2014-11-20 22:37:08', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:08', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=23', 1, 'nav_menu_item', '', 0),
+(24, 1, '2014-11-20 22:37:08', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:08', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=24', 1, 'nav_menu_item', '', 0),
+(25, 1, '2014-11-20 22:37:08', '0000-00-00 00:00:00', ' ', '', '', 'draft', 'open', 'open', '', '', '', '', '2014-11-20 22:37:08', '0000-00-00 00:00:00', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=25', 1, 'nav_menu_item', '', 0),
+(26, 1, '2014-11-20 22:37:43', '2014-11-20 20:37:43', '', 'Home', '', 'publish', 'open', 'open', '', 'home', '', '', '2014-11-20 22:37:49', '2014-11-20 20:37:49', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=26', 1, 'nav_menu_item', '', 0),
+(27, 1, '2014-11-20 22:37:43', '2014-11-20 20:37:43', ' ', '', '', 'publish', 'open', 'open', '', '27', '', '', '2014-11-20 22:37:49', '2014-11-20 20:37:49', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=27', 3, 'nav_menu_item', '', 0),
+(28, 1, '2014-11-20 22:37:43', '2014-11-20 20:37:43', ' ', '', '', 'publish', 'open', 'open', '', '28', '', '', '2014-11-20 22:37:49', '2014-11-20 20:37:49', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=28', 4, 'nav_menu_item', '', 0),
+(29, 1, '2014-11-20 22:37:43', '2014-11-20 20:37:43', ' ', '', '', 'publish', 'open', 'open', '', '29', '', '', '2014-11-20 22:37:49', '2014-11-20 20:37:49', '', 0, 'http://localhost/ch.bfh.smojeWeb/?p=29', 2, 'nav_menu_item', '', 0);
 
 -- --------------------------------------------------------
 
@@ -369,14 +486,15 @@ CREATE TABLE IF NOT EXISTS `wp_terms` (
   PRIMARY KEY (`term_id`),
   UNIQUE KEY `slug` (`slug`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `wp_terms`
 --
 
 INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
-(1, 'Allgemein', 'allgemein', 0);
+(1, 'Allgemein', 'allgemein', 0),
+(2, 'Primary', 'primary', 0);
 
 -- --------------------------------------------------------
 
@@ -397,7 +515,11 @@ CREATE TABLE IF NOT EXISTS `wp_term_relationships` (
 --
 
 INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_order`) VALUES
-(1, 1, 0);
+(1, 1, 0),
+(26, 2, 0),
+(27, 2, 0),
+(28, 2, 0),
+(29, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -415,14 +537,15 @@ CREATE TABLE IF NOT EXISTS `wp_term_taxonomy` (
   PRIMARY KEY (`term_taxonomy_id`),
   UNIQUE KEY `term_id_taxonomy` (`term_id`,`taxonomy`),
   KEY `taxonomy` (`taxonomy`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `wp_term_taxonomy`
 --
 
 INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
-(1, 1, 'category', '', 0, 1);
+(1, 1, 'category', '', 0, 1),
+(2, 2, 'nav_menu', '', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -438,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `wp_usermeta` (
   PRIMARY KEY (`umeta_id`),
   KEY `user_id` (`user_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Daten für Tabelle `wp_usermeta`
@@ -464,7 +587,10 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (18, 1, 'icwp_wptb_plugin_mailing_list_signup', 'temp'),
 (20, 1, 'wp_user-settings', 'libraryContent=browse&editor=html'),
 (21, 1, 'wp_user-settings-time', '1416514180'),
-(22, 1, 'session_tokens', 'a:1:{s:64:"8b1badf53764fcd4bbdb5158f0badc3903518605fdd7296816899183dd4020b0";i:1416687213;}');
+(22, 1, 'session_tokens', 'a:1:{s:64:"8b1badf53764fcd4bbdb5158f0badc3903518605fdd7296816899183dd4020b0";i:1416687213;}'),
+(23, 1, 'managenav-menuscolumnshidden', 'a:4:{i:0;s:11:"link-target";i:1;s:11:"css-classes";i:2;s:3:"xfn";i:3;s:11:"description";}'),
+(24, 1, 'metaboxhidden_nav-menus', 'a:2:{i:0;s:8:"add-post";i:1;s:12:"add-post_tag";}'),
+(25, 1, 'nav_menu_recently_edited', '2');
 
 -- --------------------------------------------------------
 

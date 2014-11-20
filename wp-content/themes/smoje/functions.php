@@ -1,7 +1,9 @@
 <?php
+require_once('wp_bootstrap_navwalker.php');
 
 add_action('wp_enqueue_scripts', 'include_scripts');
 add_action('wp_print_styles', 'include_styles');
+register_nav_menu('primary', 'Smoje top navigation');
 
 function include_scripts() {
 	wp_enqueue_script('jquery', get_template_directory_uri() . '/js/jquery-1.11.1.min.js', false, '1.11.1', true);

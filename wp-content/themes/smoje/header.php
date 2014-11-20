@@ -30,7 +30,15 @@
 				        </div>
 						<a href="#"><div class="logo"></div></a>
 					</div>
-					<?php include_once('nav.inc.php'); ?>
+					<div id="navbar" class="navbar-collapse collapse">
+						<?php wp_nav_menu(array(
+							'menu'			=> 'primary',
+							'container'		=> '',
+							'menu_id'		=> 'navbar',
+							'menu_class'	=> 'nav navbar-nav',
+							'walker'		=> new wp_bootstrap_navwalker()
+						)); ?>
+					</div>
 				</div>
 			</nav>
 		</header>
