@@ -71,7 +71,7 @@ Template Name: Kontakt
 				</div>
 				<div class="col-md-6">
 					<div class="col-xs-6">
-						<a href="http://www.smoje.ch"><img src="img/logo.png" alt="Logo Smoje" width="187.5" height="120"></a>
+						<a href="http://www.smoje.ch"><img src="<?php echo get_template_directory_uri() . '/img/logo.png'; ?>" alt="Logo Smoje" width="187.5" height="120"></a>
 					</div>
 					<div class="col-xs-6">
 						<a href="http://www.bfh.ch"><img src="http://www.bfh.ch/fileadmin/templates/img/logo_bfh_en.gif" alt="Logo BFH"></a>

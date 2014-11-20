@@ -24,9 +24,9 @@
 							<span class="icon-bar"></span>
 						</button>
 						<div class="social">
-							<a href="https://www.facebook.com/smuoy"><i class="fa fa-facebook"></i></a>
-				            <a href="https://twitter.com/smuoy"><i class="fa fa-twitter"></i></a>
-				            <a href="#"><i class="fa fa-google-plus"></i></a>
+							<a href="https://www.facebook.com/smuoy" target="_blank"><i class="fa fa-facebook"></i></a>
+				            <a href="https://twitter.com/smuoy" target="_blank"><i class="fa fa-twitter"></i></a>
+				            <a href="#"><i class="fa fa-google-plus" target="_blank"></i></a>
 				        </div>
 						<a href="#"><div class="logo"></div></a>
 					</div>
