@@ -197,17 +197,49 @@ table.details td {
 	padding-right: 0.5em;
 }
 
-.measurementDetailLink {
+#detail-container {
 	position: absolute;
-	right: 0;
-	bottom: 0;
-	text-decoration: none;
-	background-color: #00bff3;
-	padding: 1em;
-	color: #fff;
-	text-transform: uppercase;
-	font-weight: bold;
-	margin-bottom: 0.5em;
+	display: block;
+	z-index: 5;
+	height: 100%;
+	padding-bottom: 2em;
+	background-color: #fff;
+	border-bottom: 5px solid #00bff3;
+}
+
+#detail-container .container {
+	
+	background-color: #fff;
+	padding-bottom: 2em;
+}
+
+#detail-container h1 {
+	margin-top: 2em;;
+	
+}
+
+#detail-container h3 {
+	margin-top: 1em;;
+	
+}
+
+#map-holder-detail {
+	height: 200px;
+	
+}
+
+.map-details {
+	background-color: #fff;
+	padding: 0 1em 1em 0;
+	margin-top: -5.3em !important;
+	position: absolute;
+}
+
+#btn-close-detail-holder {
+
+	float: right;
+	background-color: #fff;
+	padding: 2em 0 0 2em;
 }
 
 /* Mobile-styles */
@@ -270,7 +302,7 @@ table.details td {
 		border-width: 3px;
 		height: 100px;
 	}
-
+	
 	.container-fluid {
 		height: calc(100% - 77px); /* body (=100%) - header (=77px) */
 	}
