@@ -6,23 +6,9 @@ Author: Mobile Computing Class 2014
 */
 @charset "UTF-8";
 
+/* === GLOBAL === */
 html, body {
 	height: 100%;
-}
-
-header {
-	height: 128px;
-}
-
-.container {
-	max-width: 1000px;
-	-webkit-transition: opacity 400ms linear;
-	transition: opacity 400ms linear;
-}
-
-.container-fluid {
-	-webkit-transition: opacity 400ms linear;
-	transition: opacity 400ms linear;
 }
 
 h1 {
@@ -52,18 +38,19 @@ h3 {
 	text-transform: uppercase;
 }
 
-.logo {
-	background: url(img/logo.png) no-repeat;
-	height: 160px;
-	margin: 0;
-	position: absolute;
-	width: 250px;
-	z-index: 999;
+.btn-default {
+	background-color: #00bff3;
+	color: #ffffff;
 }
 
-nav {
-	background-color: none;
-	text-align: center;
+.faded {
+	opacity: 0.3;
+}
+
+
+/* === STRUCTURE === */
+header {
+	height: 128px;
 }
 
 .wrapper {
@@ -71,6 +58,51 @@ nav {
 	margin: 0 auto;
 	max-width: 1000px;
 	position: relative;
+}
+
+.container {
+	max-width: 1000px;
+	-webkit-transition: opacity 400ms linear;
+	transition: opacity 400ms linear;
+}
+
+.container-fluid {
+	height: calc(100% - 128px); /* body (=100%) - header (=128px) */
+	padding: 0;
+	-webkit-transition: opacity 400ms linear;
+	transition: opacity 400ms linear;
+}
+
+.container,
+.container-fluid {
+	margin-top: 20px;
+}
+
+.map-holder-big {
+	height: 100%;
+	width: 100%;
+	-webkit-transition: opacity 400ms linear;
+	transition: opacity 400ms linear;
+}
+
+.banner {
+	border-bottom: 5px solid #00bff3;
+	height: 150px;
+	-webkit-transition: opacity 400ms linear;
+	transition: opacity 400ms linear;
+}
+
+.banner h1 {
+	border: none;
+	color: #5b5b5b;
+	text-align: center;
+}
+
+
+/* === NAVIGATION BAR === */
+nav {
+	background-color: none;
+	text-align: center;
 }
 
 .social {
@@ -87,6 +119,15 @@ nav {
 
 .social a:hover {
 	color: #000000;
+}
+
+.logo {
+	background: url(img/logo.png) no-repeat;
+	height: 160px;
+	margin: 0;
+	position: absolute;
+	width: 250px;
+	z-index: 999;
 }
 
 .navbar {
@@ -137,35 +178,8 @@ nav {
 	margin-left: 0;
 }
 
-.container-fluid {
-	height: calc(100% - 128px); /* body (=100%) - header (=128px) */
-	padding: 0;
-}
 
-.map-holder-big {
-	height: 100%;
-	width: 100%;
-	-webkit-transition: opacity 400ms linear;
-	transition: opacity 400ms linear;
-}
-
-.map-holder-small {
-	border-bottom: 5px solid #00bff3;
-	height: 150px;
-	margin-bottom: 20px;
-	-webkit-transition: opacity 400ms linear;
-	transition: opacity 400ms linear;
-}
-
-.btn-default {
-	background-color: #00bff3;
-	color: #ffffff;
-}
-
-.faded {
-	opacity: 0.3;
-}
-
+/* === CONTACT === */
 .input-group-addon {
 	vertical-align: top;
 }
@@ -174,8 +188,7 @@ textarea {
 	resize: vertical;
 }
 
-/* Map marker */
-
+/* === MAP MARKER === */
 table.details,
 table.details tr,
 table.details th,
@@ -210,18 +223,24 @@ table.details td {
 	margin-bottom: 0.5em;
 }
 
-/* Mobile-styles */
 
+/* === MOBILE STYLES === */
 @media(max-width: 767px) {
 	header {
 		height: 77px;
 	}
 
-	.logo {
-		background-size: 100% 100%;
-		height: 96px;
-		margin-left: 20px;
-		width: 150px;
+	.container-fluid {
+		height: calc(100% - 77px); /* body (=100%) - header (=77px) */
+	}
+
+	.container #map-holder {
+		height: 100px;
+	}
+
+	.banner {
+		border-width: 3px;
+		height: 100px;
 	}
 	
 	.navbar {
@@ -230,6 +249,23 @@ table.details td {
 		height: 77px;
 	}
 	
+	.social {
+		margin-top: 17px;
+		padding-top: 7px;
+	}
+
+	.social a {
+		font-size: 1.3em;
+		padding: 0 10px;
+	}
+
+	.logo {
+		background-size: 100% 100%;
+		height: 96px;
+		margin-left: 20px;
+		width: 150px;
+	}
+
 	.navbar-default .navbar-toggle {
 		margin-top: 17px;
 	}
@@ -254,28 +290,5 @@ table.details td {
 	
 	.navbar-default .navbar-nav {
 		width: 100%;
-	}
-
-	.social {
-		margin-top: 17px;
-		padding-top: 7px;
-	}
-
-	.social a {
-		font-size: 1.3em;
-		padding: 0 10px;
-	}
-
-	.map-holder-small {
-		border-width: 3px;
-		height: 100px;
-	}
-
-	.container-fluid {
-		height: calc(100% - 77px); /* body (=100%) - header (=77px) */
-	}
-
-	.container #map-holder {
-		height: 100px;
 	}
 }

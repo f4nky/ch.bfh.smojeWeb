@@ -6,7 +6,7 @@ Template Name: Kontakt
 
 <?php get_header(); ?>
 		
-		<div id="map-holder" class="map-holder-small"></div>
+		<div id="map-holder" class="banner"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
