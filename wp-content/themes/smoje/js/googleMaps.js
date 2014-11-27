@@ -1,16 +1,18 @@
 var contentStrings = {};
 var markers = {};
-var image, map, infoWindow, mapOptions;
+var image, map, infoWindow, mapOptions, isDetailOpen, detailContainer, mapHolder, detailMap, detailMapOptions;
+;
 
 function initialize() {
 	
+	mapHolder = jQuery("#map-holder");
+	detailContainer = jQuery("#detail-container");
+
 	mapOptions = {
 		center: { lat: 47.077370 ,lng: 7.161026},
 		zoom: 12
 	};
-	map = new google.maps.Map(document.getElementById('map-holder'), mapOptions);
-
-	infowindow = new google.maps.InfoWindow();
+	map = new google.maps.Map(mapHolder.get(0), mapOptions);
 
 	image = {
 		url: 'http://www.smoje.ch/theme/default/images/map-marker.png',
@@ -22,111 +24,140 @@ function initialize() {
 		anchor: new google.maps.Point(16, 44)
 	};
 	
-	//open Smoje1 infowindow at default on startsite
-	
-	addSmoje('smoje1', 47.066614 , 7.116051, "Smoje One", 11, 9, "West", 3);
-	addSmoje('smoje2', 47.082981 , 7.158966, "Smoje Two", 10, 8, "North West", 5);
-	addSmoje('smoje3', 47.056324 , 7.144203, "Smoje Three", 10, 7, "North", 4);
-	addSmoje('smoje4', 47.102382 , 7.196388, "Smoje Four", 12, 6, "North West", 5);
-	addSmoje('smoje5', 47.083215 , 7.192955, "Smoje Five", 13, 9, "North West", 6);
+	jQuery.getJSON( "/ch.bfh.smojeWeb/wp-content/themes/smoje/test-data.json", function( data ) {
+		
+		jQuery.each( data, function( smojeKey, smoje ) {
+			
+			var id, name, lat, long;
+			jQuery.each( smoje.sensors, function( sensorKey, sensor ) {
 				
-	infowindow.setContent(contentStrings['smoje1']);
-	infowindow.close();
-	infowindow.open(map,markers['smoje1']);
+				if (sensor.name == "gps") {
+					
+					id = smoje.id;
+					name = smoje.name;
+					jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
+				
+						switch (measurement.name) {
+							
+							case "Latitude":
+								lat = measurement.value;
+								break;
+							case "Longitude":
+								long = measurement.value;
+								break;
+						}
+					});
+					if (lat > 0 && long > 0) {
+						
+						addSmoje(id, lat, long, name);
+					}
+				}
+			});
+		});
+	});
 }
 
 jQuery(window).resize(function() {
 	
-	map.setOptions(mapOptions);
+	resize();
 });
 
-function addSmoje(id, lat, long, titleString, airTemperature, waterTemperature, windDirection, windSpeed) {
-	
-	contentStrings[id] = '<div id="mapContent" style="width: 300px; height: 160px; margin-right: -20px;">'+
-			'<h1 class="mapHeading">' + titleString + '</h1>'+
-			'<div id="mapContent">'+
-				'<a class="measurementDetailLink" href="detail.html?id=' + id + '">Details</a>' +
-				'<table class="details">' +
-					'<tr>' +
-						'<th>' +
-							'Position:' +
-						'</th>' +
-						'<td>' +
-							'<table class="details">' +
-								'<tr>' +
-									'<td>' +
-										'Latitude:' +
-									'</td>' +
-									'<td>' +
-										lat +
-									'</td>' +
-								'<tr>' +
-								'<tr>' +
-									'<td>' +
-										'Longitude:' +
-									'</td>' +
-									'<td>' +
-										long +
-									'</td>' +
-								'<tr>' +
-							'</table>' +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<th>' +
-							'Air Temperature:' +
-						'</th>' +
-						'<td>' +
-							airTemperature + '°C' +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<th>' +
-							'Water Temperature:' +
-						'</th>' +
-						'<td>' +
-							waterTemperature + '°C' +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<th>' +
-							'Wind:' +
-						'</th>' +
-						'<td>' +
-							'<table class="details">' +
-								'<tr>' +
-									'<td>' +
-										'Direction:' +
-									'</td>' +
-									'<td>' +
-										windDirection +
-									'</td>' +
-								'<tr>' +
-								'<tr>' +
-									'<td>' +
-										'Direction:' +
-									'</td>' +
-									'<td>' +
-										windSpeed + 'm/s' +
-									'</td>' +
-								'<tr>' +
-							'</table>' +
-						'</td>' +
-					'</tr>' +
-				'</table>' +
-			'</div>';
+function addSmoje(id, lat, long, name) {
 
 	markers[id] = new google.maps.Marker({
 		position: new google.maps.LatLng(lat , long),
 		icon: image,
 		map: map,
-		title: titleString
+		title: name
 	});
 
 	google.maps.event.addListener(markers[id], 'click', function() {
-		infowindow.setContent(contentStrings[id]);
-		infowindow.close();
-		infowindow.open(map,markers[id]);
+		openDetail(id);
+	});
+}
+
+function resize() {
+	
+	map.setOptions(mapOptions);
+	if (isDetailOpen) {
+		
+		detailContainer.css({
+			
+			top: mapHolder.offset().top+"px"
+		});
+		if (detailMap) {
+			
+			detailMap.setOptions(detailMapOptions);
+		}
+	}
+	else {
+		
+		detailContainer.css({
+			
+			top: jQuery(window).height()+"px",
+		});
+	}
+}
+
+function openDetail(id) {
+	
+	detailContainer.css({
+		"top": mapHolder.height()+"px"
+	});
+	jQuery.ajax({
+		
+		url: "/ch.bfh.smojeWeb/wp-content/themes/smoje/detail.php",
+		type: "get",
+		dataType: "html",
+		data: {"id" : id},
+		success: function(returnData){
+			
+			detailContainer.html(returnData);
+			// jQuery("#detail-container").slideUp(1000);
+			detailContainer.css({
+				
+				width: mapHolder.width()+"px"
+			});
+			detailContainer.show();
+			isDetailOpen = true;
+			var detailMapContainer = jQuery("#map-holder-detail");
+			var params = detailMapContainer.attr("data-param").split("|");
+			detailMapOptions = {
+				center: { lat: parseFloat(params[0]) ,lng: parseFloat(params[1])},
+				zoom: 12
+			};
+			detailMap = new google.maps.Map(detailMapContainer.get(0), detailMapOptions);
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(params[0], params[1]),
+				icon: image,
+				map: detailMap,
+				title: name
+			});
+			detailContainer.css({
+				top: (mapHolder.offset().top-detailContainer.height()-300)+"px"
+			});
+			detailContainer.animate({
+
+				top: (mapHolder.offset().top)+"px"
+			}, 1000, function() {
+				
+				jQuery("#btn-close-detail").click(function() {
+					
+					detailContainer.animate({
+
+						top: (mapHolder.offset().top-detailContainer.height())+"px"
+					}, 1000, function() {
+						
+						detailContainer.hide();
+					});
+					isDetailOpen = false;
+				});
+			});
+		},
+		error: function(e){
+			
+			alert(e);
+		}
 	});
 }
 
