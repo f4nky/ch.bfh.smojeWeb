@@ -24,27 +24,28 @@ function initialize() {
 		// The anchor for this image is the base of the flagpole at 0,32.
 		anchor: new google.maps.Point(16, 44)
 	};
-	
-	jQuery.getJSON( "/ch.bfh.smojeWeb/wp-content/themes/smoje/test-data.json", function( data ) {
+	jQuery.getJSON( 
+		"http://178.62.163.199/smoje/index.php/Measurement" /* "wp-content/themes/smoje/test-data.json" */, function( data ) {
 		
 		jQuery.each( data, function( smojeKey, smoje ) {
 			
 			var id, name, lat, long;
-			jQuery.each( smoje.sensors, function( sensorKey, sensor ) {
+			jQuery.each( smoje.Sensors, function( sensorKey, sensor ) {
 				
-				if (sensor.name == "gps") {
+				if (sensor.Id == 8) {
 					
-					id = smoje.id;
-					name = smoje.name;
-					jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
+					id = smoje.Id;
+					name = smoje.Name;
+					jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
 				
-						switch (measurement.name) {
+						console.log(measurement);
+						switch (measurement.Name) {
 							
-							case "Latitude":
-								lat = measurement.value;
+							case "latitude":
+								lat = measurement.ValueFloat;
 								break;
-							case "Longitude":
-								long = measurement.value;
+							case "longitude":
+								long = measurement.ValueFloat;
 								break;
 						}
 					});
@@ -84,7 +85,8 @@ function resize() {
 		
 		detailContainer.css({
 			
-			top: mapHolder.offset().top+"px"
+			top: headerContainer.height()+"px",
+			width: jQuery(window).width()+"px"
 		});
 		if (detailMap) {
 			
@@ -96,6 +98,7 @@ function resize() {
 		detailContainer.css({
 			
 			top: jQuery(window).height()+"px",
+			width: jQuery(window).width()+"px"
 		});
 	}
 }
