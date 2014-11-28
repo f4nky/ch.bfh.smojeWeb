@@ -1,4 +1,4 @@
-<?
+<?php
 
 header('Content-Type: text/html; charset=utf-8');
 require_once("smoje.class.php");
@@ -22,7 +22,7 @@ $smoje = new Smoje($_GET["id"]);
 		</div>
 	</div>
 	<div class="row">
-		<?
+		<?php
 	
 		foreach($smoje->sensors as $sensor) {
 	
@@ -32,7 +32,7 @@ $smoje = new Smoje($_GET["id"]);
 			<div class="col-md-6">
 				<h3><?= $sensor["name"] ?></h3>
 				<table class="details">
-					<?
+					<?php
 					
 					foreach($sensor["measurements"] as $measurement) {
 					
@@ -41,14 +41,14 @@ $smoje = new Smoje($_GET["id"]);
 						<th><?= $measurement["name"] ?>:</th>
 						<td><?= $measurement["value"] ?><?= $measurement["unit"] ?></td>
 					</tr>
-					<?
+					<?php
 				
 					}
 				
 					?>
 				</table>
 			</div>
-		<?
+		<?php
 	
 			}
 			else {
@@ -77,7 +77,7 @@ $smoje = new Smoje($_GET["id"]);
 					</table>
 				</div>
 			</div>
-				<?				
+				<?php				
 			}
 		}
 	

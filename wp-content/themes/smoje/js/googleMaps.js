@@ -1,11 +1,12 @@
 var contentStrings = {};
 var markers = {};
-var image, map, infoWindow, mapOptions, isDetailOpen, detailContainer, mapHolder, detailMap, detailMapOptions;
+var image, map, infoWindow, mapOptions, isDetailOpen, detailContainer, mapHolder, headerContainer, detailMap, detailMapOptions;
 ;
 
 function initialize() {
 	
 	mapHolder = jQuery("#map-holder");
+	headerContainer = jQuery("header");
 	detailContainer = jQuery("#detail-container");
 
 	mapOptions = {
@@ -138,14 +139,14 @@ function openDetail(id) {
 			});
 			detailContainer.animate({
 
-				top: (mapHolder.offset().top)+"px"
+				top: (headerContainer.height())+"px"
 			}, 1000, function() {
 				
 				jQuery("#btn-close-detail").click(function() {
 					
 					detailContainer.animate({
 
-						top: (mapHolder.offset().top-detailContainer.height())+"px"
+						top: (headerContainer.height()-detailContainer.height())+"px"
 					}, 1000, function() {
 						
 						detailContainer.hide();
