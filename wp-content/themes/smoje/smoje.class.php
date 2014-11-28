@@ -6,22 +6,16 @@ class Smoje {
 
     public function __construct($_id) {
 		
-		$data = $this->__get_json();
-		foreach ($data as $key => $value) {
+		$data = $this->__get_json($_id);
+		foreach ($data[0] as $key => $value) {
 		
-			if ($value["id"] == $_id) {
-			
-				foreach($value as $key => $value) {
-					
-					$this->$key = $value;
-				}
-			}
+			$this->$key = $value;
 		}
     }
 	
-	private function __get_json() {
+	private function __get_json($id) {
 	
-		$file = "test-data.json";
+		$file = "http://178.62.163.199/smoje/index.php/Measurement/".$id;
 		$data = json_decode(file_get_contents($file), true);
 		return($data);
 	}

@@ -13,7 +13,7 @@ $smoje = new Smoje($_GET["id"]);
 			<div id="btn-close-detail-holder">
 				<button class="btn btn-default" id="btn-close-detail" name="btnCloseDetail">Close</button>
 			</div>
-			<h1><?= $smoje->name ?></h1>
+			<h1><?= $smoje->Name ?></h1>
 		</div>
 	</div>
 	<div class="row">
@@ -24,22 +24,54 @@ $smoje = new Smoje($_GET["id"]);
 	<div class="row">
 		<?php
 	
-		foreach($smoje->sensors as $sensor) {
+		foreach($smoje->Sensors as $sensor) {
 	
-			if ($sensor["measurements"] && $sensor["name"] != "gps") {
+			if ($sensor["Mesaurements"] && $sensor["Name"] == "gps") {
+				
+				$latlong = array();
+				foreach($sensor["Mesaurements"] as $measurement) {
+					
+					$latlong[$measurement["Name"]] = $measurement["ValueFloat"];
+				}
+
+		?>
+			<div class="col-md-12">
+				<div id="map-holder-detail" data-param="<?= $latlong["latitude"]."|".$latlong["longitude"] ?>"></div>
+				<div class="map-details">
+					<h3><?= $sensor["Name"] ?></h3>
+					<table class="details">
+						<tr>
+							<th>Latitude:</th>
+							<td><?= $latlong["latitude"] ?></td>
+						</tr>
+						</tr>
+							<th>Longitude:</th>
+							<td><?= $latlong["longitude"] ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		<?php
+		
+			}
+		}
+	
+		foreach($smoje->Sensors as $sensor) {
+	
+			if ($sensor["Mesaurements"] && $sensor["Name"] != "gps") {
 
 		?>
 			<div class="col-md-6">
-				<h3><?= $sensor["name"] ?></h3>
+				<h3><?= $sensor["Name"] ?></h3>
 				<table class="details">
 					<?php
 					
-					foreach($sensor["measurements"] as $measurement) {
+					foreach($sensor["Mesaurements"] as $measurement) {
 					
 					?>
 					<tr>
-						<th><?= $measurement["name"] ?>:</th>
-						<td><?= $measurement["value"] ?><?= $measurement["unit"] ?></td>
+						<th><?= $measurement["Name"] ?>:</th>
+						<td><?= $measurement["ValueFloat"] ?> <?= $measurement["Unit"] ?></td>
 					</tr>
 					<?php
 				
@@ -50,34 +82,6 @@ $smoje = new Smoje($_GET["id"]);
 			</div>
 		<?php
 	
-			}
-			else {
-				
-				// Get LatLong values
-				$latlong = array();
-				foreach($sensor["measurements"] as $measurement) {
-					
-					$latlong[$measurement["name"]] = $measurement["value"];
-				}
-				
-				?>
-			<div class="col-md-12">
-				<div id="map-holder-detail" data-param="<?= $latlong["Latitude"]."|".$latlong["Longitude"] ?>"></div>
-				<div class="map-details">
-					<h3><?= $sensor["name"] ?></h3>
-					<table class="details">
-						<tr>
-							<th>Latitude:</th>
-							<td><?= $latlong["Latitude"] ?></td>
-						</tr>
-						</tr>
-							<th>Longitude:</th>
-							<td><?= $latlong["Longitude"] ?></td>
-						</tr>
-					</table>
-				</div>
-			</div>
-				<?php				
 			}
 		}
 	
