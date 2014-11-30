@@ -13,40 +13,30 @@ Template Name: Details
 					<h1><?php the_title(); ?></h1>
 				</div>
 			</div>
+			<?php if (have_posts()) : while(have_posts()) : the_post(); ?>
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>Sensorwerte</h2>
-					<form id="contact-form" role="form" novalidate="novalidate">
-						<div class="form-group">
-							<div class="checkbox">
-								<label><input type="checkbox"> Smoje 1</label>
-								<label><input type="checkbox"> Smoje 2</label>
-							</div>
-						</div>
-					</form>
+					<div class="tab-content">
+						<?php the_content(); ?>
+					</div>
 				</div>
 			</div>
+			<?php endwhile; endif; ?>
 			<div class="row">
 				<div class="col-xs-12">
-					<ul class="nav nav-pills">
-						<li role="presentation" class="active"><a href="#lufttemperatur" data-toggle="tab">Lufttemperatur</a></li>
-						<li role="presentation"><a href="#wassertemperatur" data-toggle="tab">Wassertemperatur</a></li>
-						<li role="presentation"><a href="#">Windgeschwindigkeit</a></li>
+					<ul class="nav nav-pills" id="smoje-sensors">
 					</ul>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="tab-content">
-						<div class="tab-pane active" id="lufttemperatur">
-							<h3>Test</h3>
-							<p>Lorem ipsum</p>
-						</div>
-						<div class="tab-pane" id="wassertemperatur">
-							<h3>Lorem ipsum</h3>
-							<p>Test</p>
-						</div>
-					</div>
+					<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+					<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+					<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
+					<script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>
+					<script type="text/javascript" src="http://cdn.amcharts.com/lib/3/lang/de.js"></script>
+					<div id="chartdiv"></div>							
+					<script src="/ch.bfh.smojeWeb/wp-content/themes/smoje/js/charts.js"></script>
 				</div>
 			</div>
 		</div>

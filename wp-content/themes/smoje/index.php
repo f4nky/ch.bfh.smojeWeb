@@ -5,9 +5,8 @@
 				<h1>Smoje - die smarteste Boje der Welt!</h1>
 			</div>
 		</div>
-		<div id="map-holder" class="map-holder-big"></div>
 		<section class="container-fluid">
-			
+			<div id="map-holder" class="map-holder-big"></div>
 		</section>
 		
 <?php get_footer(); ?>

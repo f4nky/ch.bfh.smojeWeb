@@ -69,6 +69,7 @@ header {
 .container-fluid {
 	height: calc(100% - 128px); /* body (=100%) - header (=128px) */
 	padding: 0;
+	margin-top: 0;
 	-webkit-transition: opacity 400ms linear;
 	transition: opacity 400ms linear;
 }
@@ -212,9 +213,9 @@ table.details td {
 
 #detail-container {
 	position: absolute;
-	display: block;
+	display: none;
 	z-index: 5;
-	height: 100%;
+	height: auto;
 	padding-bottom: 2em;
 	background-color: #fff;
 	border-bottom: 5px solid #00bff3;
@@ -238,7 +239,6 @@ table.details td {
 
 #map-holder-detail {
 	height: 200px;
-	
 }
 
 .map-details {
@@ -255,6 +255,16 @@ table.details td {
 	padding: 2em 0 0 2em;
 }
 
+#chartdiv {
+	
+	width: 100%;
+	height: 300px;
+}
+
+.amChartsCompareList > div {
+	
+	height: 2em !important;
+}
 
 /* === MOBILE STYLES === */
 @media(max-width: 767px) {

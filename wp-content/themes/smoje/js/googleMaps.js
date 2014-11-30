@@ -38,7 +38,6 @@ function initialize() {
 					name = smoje.Name;
 					jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
 				
-						console.log(measurement);
 						switch (measurement.Name) {
 							
 							case "latitude":
@@ -57,6 +56,7 @@ function initialize() {
 			});
 		});
 	});
+	resize();
 }
 
 jQuery(window).resize(function() {
@@ -101,6 +101,11 @@ function resize() {
 			width: jQuery(window).width()+"px"
 		});
 	}
+	mapHolder.parent().css({
+		
+		height: (jQuery(window).height()+20-mapHolder.offset().top)+"px",
+		marginTop: "0"
+	})
 }
 
 function openDetail(id) {
