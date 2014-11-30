@@ -266,6 +266,16 @@ table.details td {
 	height: 2em !important;
 }
 
+.nav-pills li a {
+	
+	text-transform: uppercase;
+}
+
+#smoje-measurements {
+	
+	margin-top: 1em;
+}
+
 /* === MOBILE STYLES === */
 @media(max-width: 767px) {
 	header {

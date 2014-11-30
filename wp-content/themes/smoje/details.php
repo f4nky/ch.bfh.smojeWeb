@@ -30,6 +30,12 @@ Template Name: Details
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
+					<ul class="nav nav-pills" id="smoje-measurements">
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
 					<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 					<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 					<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>

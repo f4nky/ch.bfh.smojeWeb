@@ -1,51 +1,80 @@
-var types = [
-	{
-		"name": "Wassertemperatur",
-		"minValue": 4,
-		"range": 18,
-		"unit": "°C"
-	},
-	{
-		"name": "Lufttemperatur",
-		"minValue": -20,
-		"range": 55,
-		"unit": "°C"
-	},
-	{
-		"name": "Windgeschwindigkeit",
-		"minValue": 0,
-		"range": 200,
-		"unit": " km/h"
-	},
-];
+var chart;
+var jsonData, tmpSensor, tmpMeasurement;
 
-var smojes = [
+var sensors = [];
+var smojes = [];
+
+var styles = [
 	{
-		"name": "Smoje 1",
 		"bullet": "round",
 		"color": "#FF6600"
 	},
 	{
-		"name": "Smoje 2",
 		"bullet": "square",
 		"color": "#FCD202"
 	},
 	{
-		"name": "Smoje 3",
 		"bullet": "triangleUp",
 		"color": "#B0DE09"
 	},
 	{
-		"name": "Smoje 4",
 		"bullet": "bubble",
 		"color": "#FC02D2"
 	},
 	{
-		"name": "Smoje 5",
 		"bullet": "triangleDown",
 		"color": "#B009DE"
 	}
 ];
+
+jQuery.getJSON( 
+	"http://178.62.163.199/smoje/index.php/Measurement", function( data ) {
+	
+	var i = 0;
+	jsonData = data;
+	jQuery.each( data, function( smojeKey, smoje ) {
+		
+		var id, name, lat, long;
+		var smojeObj = {};
+		
+		for (var attr in styles[i]) {
+			smojeObj[attr] = styles[i][attr];
+		}
+		
+		smojeObj.name = smoje.Name;
+		smojeObj.sensors = {};
+		
+		jQuery.each( smoje.Sensors, function( sensorKey, sensor ) {
+			
+			var sensorObj = {};
+			sensorObj.name = sensor.Name;
+			if (sensor.Id != 8) {
+				
+				id = smoje.Id;
+				name = smoje.Name;
+				sensorObj.measurements = {};
+				jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
+			
+					var measurementObj = {
+						"name": measurement.Name,
+						"minValue": measurement.ValueFloat-5,
+						"range": 10,
+						"unit": measurement.Unit,
+					};
+					sensorObj.measurements[measurement.Name] = measurementObj;
+				});
+				if (lat > 0 && long > 0) {
+					
+					addSmoje(id, lat, long, name);
+				}
+				smojeObj.sensors[sensor.Name] = sensorObj;
+			}
+		});
+		smojes.push(smojeObj);
+		i++;
+	});
+	initChart();
+});
 
 var dataObj = {
     "type": "serial",
@@ -57,14 +86,7 @@ var dataObj = {
         "useGraphSettings": true,
 		"valueWidth": 70
     },
-    "valueAxes": [{
-        "id":"v",
-        "axisColor": "#333333",
-        "axisThickness": 1,
-        "gridAlpha": 0,
-        "axisAlpha": 1,
-        "position": "left"
-    }],
+    "valueAxes": [],
     "chartScrollbar": {},
     "chartCursor": {
         "cursorPosition": "mouse",
@@ -90,65 +112,107 @@ var dataObj = {
     }
 };
 
-for (var i = 0; i < smojes.length; i++) {
-
-	dataObj.graphs[i] = {
-		"lineColor": smojes[i].color,
-		"bullet": smojes[i].bullet,
-        "valueAxis": "v",
-        "bulletBorderThickness": 1,
-        "hideBulletsCount": 30,
-        "title": smojes[i].name,
-        "valueField": "value"+(i+1),
-		"fillAlphas": 0,
-		"type": "smoothedLine",
-	};
-}
-
-chartData = generateChartData(5, types[0].minValue, types[0].range);
-var chart = AmCharts.makeChart("chartdiv", dataObj);
-chart.dataProvider = chartData;
-
-chart.addListener("dataUpdated", zoomChart);
-
-function setData (typeId) {
+function initChart() {
 	
-	var type = types[typeId];
-	for (var i = 0; i < 5; i++) {
-
-		dataObj.graphs[i].valueText = "[[value]]" + type.unit;
-		dataObj.graphs[i].balloonText = "[[title]]:<b>[[value]]" + type.unit + "</b>";
-	}
-	chartData = generateChartData(5, type.minValue, type.range);
-	chart.valueAxes[0].unit = type.unit;
-	chart.dataProvider = chartData;
-	chart.validateData();						
-}
-
-var typeSelector = "";
-for (var i = 0; i < types.length; i++) {
-	
-	var className = "";
-	if (i == 0) {
+	var typeSelector = "";
+	var measurementSelector = "";
+	var i = 0;
+	var j = 0;
+	jQuery.each( smojes[0].sensors, function( sensorKey, sensor ) {
 		
-		className += " active"
-	} 
-	typeSelector += '<li role="presentation" class="' + className + '"><a href="#' + types[i].name.toLowerCase() + '" data-toggle="tab" onclick="setData(' + i + ');">' + types[i].name + '</a></li>';
+		var className = "";
+		if (i == 0) {
+		
+			className += " active";
+			jQuery.each(sensor.measurements, function(measurementKey, measurement) {
+			
+				var innerClassName = "";
+				if (j == 0) {
+					
+					innerClassName = "active";
+					j++;
+				}
+				measurementSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
+			});
+		} 
+		i++;
+		typeSelector += '<li role="presentation" class="' + className + '"><a href="#' + sensor.name.toLowerCase() + '" data-toggle="tab" onclick="setSensor(\'' + sensor.name.toLowerCase() + '\');">' + sensor.name + '</a></li>';
+	});
+
+	jQuery("#smoje-sensors").html(typeSelector);
+	jQuery("#smoje-measurements").html(measurementSelector);
+	
+	setSensor(Object.keys(smojes[0].sensors)[0]);
 }
 
-jQuery("#smoje-sensors").html(typeSelector);
+function setSensor (sensorKey) {
+	
+	var measurementSelector = "";
+	var i = 0;
+	jQuery.each( smojes[0].sensors[sensorKey].measurements, function( measurementKey, measurement ) {
+		
+		var className = "";
+		if (i == 0) {
+		
+			className += " active";
+			setMeasurement(sensorKey, measurement.name)
+		} 
+		i++;
+		measurementSelector += '<li role="presentation" class="' + className + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensorKey + '\', \'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
+	});
+	
 
-setData(0);
+	jQuery("#smoje-measurements").html(measurementSelector);
+}
+
+function setMeasurement (sensorKey, measurementKey) {
+
+	var sensor = smojes[0].sensors[sensorKey];
+	var measurement = smojes[0].sensors[sensorKey].measurements[measurementKey];
+	var myData = dataObj;
+	myData.graphs = [];
+	myData.valueAxes[0] = {
+		"id":"v",
+		"axisColor": "#333333",
+		"axisThickness": 1,
+		"gridAlpha": 0,
+		"axisAlpha": 1,
+		"position": "left",
+		"unit": " " + measurement.unit
+	};
+	for (var i = 0; i < smojes.length; i++) {
+
+		var graph = {
+			"lineColor": smojes[i].color,
+			"bullet": smojes[i].bullet,
+			"valueAxis": "v",
+			"bulletBorderThickness": 1,
+			"hideBulletsCount": 30,
+			"title": smojes[i].name,
+			"valueField": measurement.name + "Value" + (i+1),
+			"fillAlphas": 0,
+			"type": "smoothedLine",
+		};
+		graph.valueText = "[[value]] " + measurement.unit;
+		graph.balloonText = "[[title]]:<b>[[value]] " + measurement.unit + "</b>";
+		graph.valueField = measurement.name + "Value" + (i+1);
+		myData.graphs.push(graph);
+	}
+	var chartData = generateChartData(1000, measurement.minValue, measurement.range, measurement.name);
+	chart = AmCharts.makeChart("chartdiv", myData);
+	chart.valueAxes[0].unit = " " + measurement.unit;
+	chart.dataProvider = chartData;
+	chart.validateData();
+	zoomChart();
+}
 
 // generate some random data, quite different range
-function generateChartData(n, min, range) {
+function generateChartData(samples, min, range, label) {
     var chartData = [];
     var firstDate = new Date();
-	console.log(firstDate);
-    firstDate.setTime(firstDate.valueOf() - (1000 * 15 * 60 * 1000));
-	console.log(firstDate);
+    firstDate.setTime(firstDate.valueOf() - (samples * 15 * 60 * 1000));
 
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < samples; i++) {
         // we create date objects here. In your data, you can have date strings
         // and then set format of your dates using chart.dataDateFormat property,
         // however when possible, use date objects, as this will speed up chart rendering.
@@ -157,10 +221,14 @@ function generateChartData(n, min, range) {
         newDate.setTime(newDate.valueOf() + (i * 15 * 60 * 1000));
 		obj.date = newDate;
 		
-		for (var j = 0; j < n; j++) {
+		for (var j = 0; j < smojes.length; j++) {
 			
 	        var v = ((Math.random() * range) + min).toFixed(2);
-			obj["value"+(j+1)] = v
+			if (i == samples-1) {
+				
+				v = getMeasurement(smojes[j], label);
+			}
+			obj[label + "Value" + (j+1)] = v;
 		}
 
         chartData.push(obj);
@@ -168,9 +236,32 @@ function generateChartData(n, min, range) {
     return chartData;
 }
 
-function zoomChart(){
-	if (chart.dataProvider && chart.dataProvider.length >= 20) {
+function getMeasurement(targetSmoje, measurementLabel) {
+	
+	var value = 0;
+	jQuery.each( jsonData, function( smojeKey, smoje ) {
 		
+		if (smoje.Name == targetSmoje.name) {
+		
+			jQuery.each( smoje.Sensors, function( sensorKey, sensor ) {
+		
+				jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
+			
+					if (measurement.Name == measurementLabel) {
+				
+						value = measurement.ValueFloat;
+					}
+				});
+			});
+		}
+	});
+	return value;
+}
+
+function zoomChart(){
+	
+	if (chart.dataProvider && chart.dataProvider.length >= 20) {
+	
 	    chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
 	}
 }
