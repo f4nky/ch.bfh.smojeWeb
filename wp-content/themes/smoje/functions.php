@@ -12,7 +12,7 @@ function include_scripts() {
 	wp_enqueue_script('maps.googleapi', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDjzb731OMCmBZDYBSuXB0y1yN5srAzqvM', false, false, true);
 	wp_enqueue_script('maps.google.marker', get_template_directory_uri() . '/js/googleMaps.js', false, false, true);
 	wp_enqueue_script('custom.functions', get_template_directory_uri() . '/js/functions.js', false, false, true);
-	wp_enqueue_script('custom.functions.contact', get_template_directory_uri() . '/js/functionsContact.js', false, false, true);
+	wp_enqueue_script('validate.contact', get_template_directory_uri() . '/js/validate.contact.js', false, false, true);
 }
 
 function include_styles() {

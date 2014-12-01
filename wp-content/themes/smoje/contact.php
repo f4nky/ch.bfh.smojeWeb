@@ -14,8 +14,9 @@ Template Name: Kontakt
 				</div>
 			</div>
 			<div class="row">
+				<div id="success"></div>
 				<div class="col-md-6">
-					<form id="contact-form" role="form" novalidate="novalidate">
+					<form id="contact-form" action="<?= get_template_directory_uri() .'/libs/processContact.php'; ?>" method="post" role="form" novalidate="novalidate">
 						<div class="form-group">
 							<label class="control-label">Name *</label>
 							<div class="controls">
@@ -30,7 +31,7 @@ Template Name: Kontakt
 							<div class="controls">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-									<input type="text" class="form-control" id="email" name="email" placeholder="beispiel@domain.ch">
+									<input type="email" class="form-control" id="email" name="email" placeholder="beispiel@domain.ch">
 								</div>
 							</div>
 						</div>
