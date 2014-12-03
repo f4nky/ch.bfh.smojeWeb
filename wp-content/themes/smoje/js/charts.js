@@ -148,26 +148,32 @@ function initChart() {
 function setSensor (sensorKey) {
 	
 	var measurementSelector = "";
-	var i = 0;
-	jQuery.each( smojes[0].sensors[sensorKey].measurements, function( measurementKey, measurement ) {
+	var sensor = smojes[0].sensors[sensorKey];
+	console.log(sensor.name);
+	if (sensor.name == "geiger-counter") {
 		
-		var className = "";
-		if (i == 0) {
+		jQuery("#chartdiv").html('<img src="https://scontent-a.xx.fbcdn.net/hphotos-xpa1/v/l/t1.0-9/10846279_10152868678517290_1350059466261271515_n.jpg?oh=09602779338e85e72788a02e95158b4e&oe=550D8DA3" />');
+	}
+	else {
 		
-			className += " active";
-			setMeasurement(sensorKey, measurement.name)
-		} 
-		i++;
-		measurementSelector += '<li role="presentation" class="' + className + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensorKey + '\', \'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
-	});
-	
-
+		var i = 0;
+		jQuery.each( smojes[0].sensors[sensorKey].measurements, function( measurementKey, measurement ) {
+		
+			var className = "";
+			if (i == 0) {
+		
+				className += " active";
+				setMeasurement(sensorKey, measurement.name)
+			} 
+			i++;
+			measurementSelector += '<li role="presentation" class="' + className + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensorKey + '\', \'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
+		});
+	}
 	jQuery("#smoje-measurements").html(measurementSelector);
 }
 
 function setMeasurement (sensorKey, measurementKey) {
 
-	var sensor = smojes[0].sensors[sensorKey];
 	var measurement = smojes[0].sensors[sensorKey].measurements[measurementKey];
 	var myData = dataObj;
 	myData.graphs = [];
