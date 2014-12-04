@@ -38,10 +38,10 @@ jQuery('#contact-form').validate({
 			url: jQuery(form).attr('action'),
 			data: jQuery(form).serialize(),
 			success: function(result) {
-				alert(result);
-			},
-			error: function(result) {
-				alert(result);
+				jQuery('#success').html('<div class="alert alert-success"><strong><p>Vielen Dank.</p><p>Ihre Nachricht wurde erfolgreich übermittelt.</p>').fadeIn('fast').delay(3000).fadeOut('fast');
+				jQuery('#contact-form').trigger('reset');
+				jQuery('#contact-form').fadeOut('fast').delay(3000).fadeIn('fast');
+				jQuery('#contact-form').find('.has-success').removeClass('has-success');
 			}
 		});
 		return false;

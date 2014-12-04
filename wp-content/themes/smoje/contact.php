@@ -14,8 +14,8 @@ Template Name: Kontakt
 				</div>
 			</div>
 			<div class="row">
-				<div id="success"></div>
 				<div class="col-md-6">
+					<div id="success"></div>
 					<form id="contact-form" action="<?= get_template_directory_uri() .'/libs/processContact.php'; ?>" method="post" role="form" novalidate="novalidate">
 						<div class="form-group">
 							<label class="control-label">Name *</label>
