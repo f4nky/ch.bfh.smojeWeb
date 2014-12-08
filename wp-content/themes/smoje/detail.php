@@ -114,7 +114,7 @@ $smoje = new Smoje($_GET["id"]);
 						<td><?= $value ?></td>
 					</tr>
 					
-					<?
+					<?php
 						
 					}
 					
