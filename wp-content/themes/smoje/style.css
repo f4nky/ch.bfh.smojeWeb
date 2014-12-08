@@ -274,6 +274,7 @@ table.details td {
 #smoje-measurements {
 	
 	margin-top: 1em;
+	display: none;
 }
 
 /* === MOBILE STYLES === */

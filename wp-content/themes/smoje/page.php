@@ -1,6 +1,13 @@
 <?php get_header(); ?>
 		
-		<div id="map-holder" class="map-holder-small"></div>
+		<div id="map-holder" class="map-holder-small" data-param="<?php
+		
+		$file = "http://tracker.xrj.ch/smoje-api/v1/1001/status";
+		$data = json_decode(file_get_contents($file), true);
+		
+		echo ($data["lastPosition"]["latitude"]."|".$data["lastPosition"]["longitude"]);
+		
+		?>"></div>
 		<div class="container">
 			<?php if (have_posts()) : while(have_posts()) : the_post(); ?>
 			<div class="row">

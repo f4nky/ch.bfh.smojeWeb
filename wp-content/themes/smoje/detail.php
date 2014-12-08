@@ -24,21 +24,22 @@ $smoje = new Smoje($_GET["id"]);
 	<div class="row">
 		<?php
 	
-		foreach($smoje->Sensors as $sensor) {
+		$file = "http://tracker.xrj.ch/smoje-api/v1/1001/status";
+		$data = json_decode(file_get_contents($file), true);
+		
 	
-			if ($sensor["Mesaurements"] && $sensor["Name"] == "gps") {
+		if ($data["lastPosition"]) {
 				
-				$latlong = array();
-				foreach($sensor["Mesaurements"] as $measurement) {
-					
-					$latlong[$measurement["Name"]] = $measurement["ValueFloat"];
-				}
+			$latlong = array(
+				"latitude" => $data["lastPosition"]["latitude"],
+				"longitude" => $data["lastPosition"]["longitude"]
+			);
 
 		?>
 			<div class="col-md-12">
 				<div id="map-holder-detail" data-param="<?= $latlong["latitude"]."|".$latlong["longitude"] ?>"></div>
 				<div class="map-details">
-					<h3><?= $sensor["Name"] ?></h3>
+					<h3>GPS</h3>
 					<table class="details">
 						<tr>
 							<th>Latitude:</th>
@@ -53,12 +54,32 @@ $smoje = new Smoje($_GET["id"]);
 			</div>
 		<?php
 		
+		}
+		
+		foreach($smoje->Sensors as $sensor) {
+			
+			if (stristr($sensor["Name"], "camera")) {
+				
+				$value = "";
+				foreach($sensor["Mesaurements"] as $measurement) {
+					
+					$value = $measurement["ValueString"];
+				}
+			?>
+			<div class="col-md-12">
+				<h3><?= $sensor["Name"] ?></h3>
+				<img src="<?= str_replace("/var/www", "http://178.62.163.199", $value) ?>" />
+			</div>
+			<?php
+				
 			}
 		}
 	
 		foreach($smoje->Sensors as $sensor) {
 	
-			if ($sensor["Mesaurements"] && $sensor["Name"] != "gps") {
+			if (
+				($sensor["Mesaurements"] && $sensor["Name"] != "gps") &&
+				(!stristr($sensor["Name"], "camera"))) {
 
 		?>
 			<div class="col-md-6">
@@ -66,17 +87,37 @@ $smoje = new Smoje($_GET["id"]);
 				<table class="details">
 					<?php
 					
+					$name = "";
+					$value = "";
+					
 					foreach($sensor["Mesaurements"] as $measurement) {
 					
+						if ($name != "" && $name != $measurement["Name"]) {
+							
+							?>
+					<tr>
+						<th><?= $name ?>:</th>
+						<td><?= $value ?></td>
+					</tr>
+							<?php
+
+						}
+						$name = $measurement["Name"];
+						$value = $measurement["ValueFloat"]." ".$measurement["Unit"];
+					}
+					
+					if ($name != "") {
+						
 					?>
 					<tr>
-						<th><?= $measurement["Name"] ?>:</th>
-						<td><?= $measurement["ValueFloat"] ?> <?= $measurement["Unit"] ?></td>
+						<th><?= $name ?>:</th>
+						<td><?= $value ?></td>
 					</tr>
-					<?php
-				
+					
+					<?
+						
 					}
-				
+					
 					?>
 				</table>
 			</div>

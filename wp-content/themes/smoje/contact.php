@@ -6,7 +6,14 @@ Template Name: Kontakt
 
 <?php get_header(); ?>
 		
-		<div id="map-holder" class="banner"></div>
+		<div id="map-holder" class="banner" data-param="<?php
+		
+		$file = "http://tracker.xrj.ch/smoje-api/v1/1001/status";
+		$data = json_decode(file_get_contents($file), true);
+		
+		echo ($data["lastPosition"]["latitude"]."|".$data["lastPosition"]["longitude"]);
+		
+		?>"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">

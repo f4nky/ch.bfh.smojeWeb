@@ -3,6 +3,7 @@ var jsonData, tmpSensor, tmpMeasurement;
 
 var sensors = [];
 var smojes = [];
+var chartData = [];
 
 var styles = [
 	{
@@ -28,6 +29,65 @@ var styles = [
 ];
 
 jQuery.getJSON( 
+	"http://178.62.163.199/smoje/index.php/measurements/6", function( data ) {
+	
+	var i = 0;
+	jsonData = data;
+	
+	jQuery.each( data, function( smojeKey, smoje ) {
+		
+		var id, name, lat, long;
+		var smojeObj = {};
+		
+		for (var attr in styles[i]) {
+			smojeObj[attr] = styles[i][attr];
+		}
+		
+		smojeObj.name = smoje.Name;
+		smojeObj.sensors = {};
+		
+		jQuery.each( smoje.Sensors, function( sensorKey, sensor ) {
+			
+			var sensorObj = {};
+			sensorObj.name = sensor.Name;
+			if (sensor.Id != 8) {
+				
+				id = smoje.Id;
+				name = smoje.Name;
+				sensorObj.measurements = {};
+				jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
+			
+					if (sensor.Id == 7) {
+					
+						chartData.push({
+						
+							"date": new Date(measurement.Timestamp.date),
+							"tempAirValue1": measurement.ValueFloat
+						})
+					
+					}
+					var measurementObj = {
+						"name": measurement.Name,
+						"minValue": measurement.ValueFloat-5,
+						"range": 10,
+						"unit": measurement.Unit,
+					};
+					sensorObj.measurements[measurement.Name] = measurementObj;
+				});
+				if (lat > 0 && long > 0) {
+					
+					addSmoje(id, lat, long, name);
+				}
+				smojeObj.sensors[sensor.Name] = sensorObj;
+			}
+		});
+		smojes.push(smojeObj);
+		i++;
+	});
+	initChart();
+});
+
+/* jQuery.getJSON( 
 	"http://178.62.163.199/smoje/index.php/Measurement", function( data ) {
 	
 	var i = 0;
@@ -74,7 +134,7 @@ jQuery.getJSON(
 		i++;
 	});
 	initChart();
-});
+}); */
 
 var dataObj = {
     "type": "serial",
@@ -120,36 +180,38 @@ function initChart() {
 	var j = 0;
 	jQuery.each( smojes[0].sensors, function( sensorKey, sensor ) {
 		
-		var className = "";
-		if (i == 0) {
-		
-			className += " active";
-			jQuery.each(sensor.measurements, function(measurementKey, measurement) {
+		if (sensor.name.toLowerCase().indexOf("camera") == -1) {
 			
-				var innerClassName = "";
-				if (j == 0) {
+			var className = "";
+			if (i == 0) {
+		
+				className += " active";
+				jQuery.each(sensor.measurements, function(measurementKey, measurement) {
+			
+					var innerClassName = "";
+					if (j == 0) {
 					
-					innerClassName = "active";
-					j++;
-				}
-				measurementSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
-			});
-		} 
-		i++;
-		typeSelector += '<li role="presentation" class="' + className + '"><a href="#' + sensor.name.toLowerCase() + '" data-toggle="tab" onclick="setSensor(\'' + sensor.name.toLowerCase() + '\');">' + sensor.name + '</a></li>';
+						innerClassName = "active";
+						j++;
+					}
+					measurementSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
+				});
+			} 
+			i++;
+			typeSelector += '<li role="presentation" class="' + className + '"><a href="#' + sensor.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensor.name + '\', \'' + sensor.name + '\');">' + sensor.name + '</a></li>';
+		}
 	});
 
 	jQuery("#smoje-sensors").html(typeSelector);
 	jQuery("#smoje-measurements").html(measurementSelector);
 	
-	setSensor(Object.keys(smojes[0].sensors)[0]);
+	setMeasurement(Object.keys(smojes[0].sensors)[0], Object.keys(smojes[0].sensors)[0]);
 }
 
 function setSensor (sensorKey) {
 	
 	var measurementSelector = "";
 	var sensor = smojes[0].sensors[sensorKey];
-	console.log(sensor.name);
 	if (sensor.name == "geiger-counter") {
 		
 		jQuery("#chartdiv").html('<img src="https://scontent-a.xx.fbcdn.net/hphotos-xpa1/v/l/t1.0-9/10846279_10152868678517290_1350059466261271515_n.jpg?oh=09602779338e85e72788a02e95158b4e&oe=550D8DA3" />');
@@ -204,7 +266,7 @@ function setMeasurement (sensorKey, measurementKey) {
 		graph.valueField = measurement.name + "Value" + (i+1);
 		myData.graphs.push(graph);
 	}
-	var chartData = generateChartData(1000, measurement.minValue, measurement.range, measurement.name);
+	// var chartData = generateChartData(1000, measurement.minValue, measurement.range, measurement.name);
 	chart = AmCharts.makeChart("chartdiv", myData);
 	chart.valueAxes[0].unit = " " + measurement.unit;
 	chart.dataProvider = chartData;
@@ -266,8 +328,8 @@ function getMeasurement(targetSmoje, measurementLabel) {
 
 function zoomChart(){
 	
-	if (chart.dataProvider && chart.dataProvider.length >= 20) {
+	if (chart.dataProvider && chart.dataProvider.length >= 50) {
 	
-	    chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
+	    chart.zoomToIndexes(chart.dataProvider.length - 50, chart.dataProvider.length - 1);
 	}
 }

@@ -1,7 +1,6 @@
 var contentStrings = {};
 var markers = {};
 var image, map, infoWindow, mapOptions, isDetailOpen, detailContainer, mapHolder, headerContainer, detailMap, detailMapOptions;
-;
 
 function initialize() {
 	
@@ -9,8 +8,10 @@ function initialize() {
 	headerContainer = jQuery("header");
 	detailContainer = jQuery("#detail-container");
 
+	var latlong = mapHolder.attr("data-param").split("|");
+
 	mapOptions = {
-		center: { lat: 47.077370 ,lng: 7.161026},
+		center: { lat: parseFloat(latlong[0]) ,lng: parseFloat(latlong[1])},
 		zoom: 12
 	};
 	map = new google.maps.Map(mapHolder.get(0), mapOptions);
@@ -24,8 +25,11 @@ function initialize() {
 		// The anchor for this image is the base of the flagpole at 0,32.
 		anchor: new google.maps.Point(16, 44)
 	};
-	jQuery.getJSON( 
-		"http://178.62.163.199/smoje/index.php/Measurement" /* "wp-content/themes/smoje/test-data.json" */, function( data ) {
+	
+	addSmoje(6, latlong[0], latlong[1], "JLaw");
+
+	/* jQuery.getJSON( 
+		"http://178.62.163.199/smoje/index.php/Measurement", function( data ) {
 		
 		jQuery.each( data, function( smojeKey, smoje ) {
 			
@@ -55,8 +59,8 @@ function initialize() {
 				}
 			});
 		});
-	});
-	resize();
+	}); */
+		resize();
 }
 
 jQuery(window).resize(function() {
@@ -74,7 +78,7 @@ function addSmoje(id, lat, long, name) {
 	});
 
 	google.maps.event.addListener(markers[id], 'click', function() {
-		openDetail(id);
+		openDetail(6);
 	});
 }
 
