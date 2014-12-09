@@ -60,7 +60,7 @@ jQuery.getJSON(
 					var obj = {};
 					obj["date"] = new Date(measurement.timestamp);
 					obj[measurement.name + "Value"] = measurement.valueFloat;
-					sensorObj.chartData.push(obj);
+					sensorObj.chartData.unshift(obj);
 					
 					var measurementObj = {
 						"name": measurement.name,
@@ -175,10 +175,9 @@ function initChart() {
 	var i = 0;
 	jQuery.each( smojes[0].sensors, function( sensorKey, sensor ) {
 		
-		console.log(sensor);
 		if (sensor.name.toLowerCase().indexOf("camera") == -1 && sensor.chartData.length > 0) {
 			
-			console.log("hallo");
+			var innerClassName = "";
 			if (i == 0) {
 			
 				innerClassName = "active";
@@ -199,6 +198,7 @@ function initChart() {
 function setSensor (sensorKey) {
 	
 	var measurementSelector = "";
+	var i = 0;
 	var sensor = smojes[0].sensors[sensorKey];
 	if (sensor.name == "geiger-counter") {
 		
@@ -206,7 +206,6 @@ function setSensor (sensorKey) {
 	}
 	else {
 		
-		var i = 0;
 		jQuery.each( smojes[0].sensors[sensorKey].measurements, function( measurementKey, measurement ) {
 		
 			var className = "";
@@ -225,7 +224,6 @@ function setSensor (sensorKey) {
 function setMeasurement (sensorKey, measurementKey) {
 
 	var measurement = smojes[0].sensors[sensorKey].measurements[measurementKey];
-	console.log(smojes[0].sensors[sensorKey].chartData);
 	var myData = dataObj;
 	myData.graphs = [];
 	myData.valueAxes[0] = {
