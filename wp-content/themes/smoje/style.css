@@ -271,10 +271,15 @@ table.details td {
 	text-transform: uppercase;
 }
 
-#smoje-measurements {
+#smoje-sensors {
 	
 	margin-top: 1em;
 	display: none;
+}
+
+#smoje-measurements li {
+	
+	margin-bottom: 0.2em;
 }
 
 /* === MOBILE STYLES === */

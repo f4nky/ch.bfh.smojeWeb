@@ -13,7 +13,7 @@ $smoje = new Smoje($_GET["id"]);
 			<div id="btn-close-detail-holder">
 				<button class="btn btn-default" id="btn-close-detail" name="btnCloseDetail">Close</button>
 			</div>
-			<h1><?= $smoje->Name ?></h1>
+			<h1><?= $smoje->name ?></h1>
 		</div>
 	</div>
 	<div class="row">
@@ -56,18 +56,18 @@ $smoje = new Smoje($_GET["id"]);
 		
 		}
 		
-		foreach($smoje->Sensors as $sensor) {
+		foreach($smoje->sensors as $sensor) {
 			
-			if (stristr($sensor["Name"], "camera")) {
+			if (stristr($sensor["name"], "camera")) {
 				
 				$value = "";
-				foreach($sensor["Mesaurements"] as $measurement) {
+				foreach($sensor["measurements"] as $measurement) {
 					
-					$value = $measurement["ValueString"];
+					$value = $measurement["valueString"];
 				}
 			?>
 			<div class="col-md-12">
-				<h3><?= $sensor["Name"] ?></h3>
+				<h3><?= str_replace("_", " ", $sensor["sensorType"]) ?></h3>
 				<img src="<?= str_replace("/var/www", "http://178.62.163.199", $value) ?>" />
 			</div>
 			<?php
@@ -75,24 +75,25 @@ $smoje = new Smoje($_GET["id"]);
 			}
 		}
 	
-		foreach($smoje->Sensors as $sensor) {
+		foreach($smoje->sensors as $sensor) {
 	
 			if (
-				($sensor["Mesaurements"] && $sensor["Name"] != "gps") &&
-				(!stristr($sensor["Name"], "camera"))) {
+				($sensor["measurements"] && $sensor["name"] != "gps") &&
+				(!stristr($sensor["name"], "camera"))) {
 
 		?>
 			<div class="col-md-6">
-				<h3><?= $sensor["Name"] ?></h3>
+				<h3><?= str_replace("_", " ", $sensor["sensorType"]) ?></h3>
+				<p><?= $sensor["description"] ?></p
 				<table class="details">
 					<?php
 					
 					$name = "";
 					$value = "";
 					
-					foreach($sensor["Mesaurements"] as $measurement) {
+					foreach($sensor["measurements"] as $measurement) {
 					
-						if ($name != "" && $name != $measurement["Name"]) {
+						if ($name != "" && $name != $measurement["name"]) {
 							
 							?>
 					<tr>
@@ -102,16 +103,15 @@ $smoje = new Smoje($_GET["id"]);
 							<?php
 
 						}
-						$name = $measurement["Name"];
-						$value = $measurement["ValueFloat"]." ".$measurement["Unit"];
+						$name = $measurement["name"];
+						$value = $measurement["valueFloat"]." ".str_replace("^", "", $measurement["unit"]);
 					}
 					
 					if ($name != "") {
 						
 					?>
 					<tr>
-						<th><?= $name ?>:</th>
-						<td><?= $value ?></td>
+						<td colspan="2"><?= $value ?></td>
 					</tr>
 					
 					<?php

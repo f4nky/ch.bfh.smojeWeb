@@ -15,9 +15,9 @@ class Smoje {
 	
 	private function __get_json($id) {
 	
-		$file = "http://178.62.163.199/smoje/index.php/measurement/".$id;
+		$file = "http://178.62.163.199/smoje/index.php/measurements/".$id;
 		$data = json_decode(file_get_contents($file), true);
-		return($data);
+		return($data["stations"]);
 	}
 }
 

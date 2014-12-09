@@ -26,12 +26,12 @@ var styles = [
 ];
 
 jQuery.getJSON( 
-	"http://178.62.163.199/smoje/index.php/measurement/6", function( data ) {
+	"http://178.62.163.199/smoje/index.php/measurements/6", function( data ) {
 	
 	var i = 0;
-	jsonData = data;
+	jsonData = data.stations;
 	
-	jQuery.each( data, function( smojeKey, smoje ) {
+	jQuery.each( jsonData, function( smojeKey, smoje ) {
 		
 		var id, name, lat, long;
 		var smojeObj = {};
@@ -40,41 +40,41 @@ jQuery.getJSON(
 			smojeObj[attr] = styles[i][attr];
 		}
 		
-		smojeObj.name = smoje.Name;
+		smojeObj.name = smoje.name;
 		smojeObj.sensors = {};
 		
-		jQuery.each( smoje.Sensors, function( sensorKey, sensor ) {
+		jQuery.each( smoje.sensors, function( sensorKey, sensor ) {
 			
 			var sensorObj = {};
-			sensorObj.name = sensor.Name;
+			sensorObj.name = sensor.sensorType;
 			// Exclude camera and gps...
 			if (sensor.Id != 8 && sensor.Id != 10) {
 				
 				i++;
 				id = smoje.Id;
-				name = smoje.Name;
+				name = smoje.name;
 				sensorObj.measurements = {};
 				sensorObj.chartData = [];
-				jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
+				jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
 			
 					var obj = {};
-					obj["date"] = new Date(measurement.Timestamp.date);
-					obj[measurement.Name + "Value" + i] = measurement.ValueFloat;
+					obj["date"] = new Date(measurement.timestamp);
+					obj[measurement.name + "Value"] = measurement.valueFloat;
 					sensorObj.chartData.push(obj);
 					
 					var measurementObj = {
-						"name": measurement.Name,
-						"minValue": measurement.ValueFloat-5,
+						"name": measurement.name,
+						"minValue": measurement.nalueFloat-5,
 						"range": 10,
-						"unit": measurement.Unit,
+						"unit": measurement.unit.replace("^", ""),
 					};
-					sensorObj.measurements[measurement.Name] = measurementObj;
+					sensorObj.measurements[measurement.name] = measurementObj;
 				});
 				if (lat > 0 && long > 0) {
 					
 					addSmoje(id, lat, long, name);
 				}
-				smojeObj.sensors[sensor.Name] = sensorObj;
+				smojeObj.sensors[sensor.sensorType] = sensorObj;
 			}
 		});
 		smojes.push(smojeObj);
@@ -173,35 +173,27 @@ function initChart() {
 	var typeSelector = "";
 	var measurementSelector = "";
 	var i = 0;
-	var j = 0;
 	jQuery.each( smojes[0].sensors, function( sensorKey, sensor ) {
 		
-		if (sensor.name.toLowerCase().indexOf("camera") == -1) {
+		console.log(sensor);
+		if (sensor.name.toLowerCase().indexOf("camera") == -1 && sensor.chartData.length > 0) {
 			
-			var className = "";
+			console.log("hallo");
 			if (i == 0) {
-		
-				className += " active";
-				jQuery.each(sensor.measurements, function(measurementKey, measurement) {
 			
-					var innerClassName = "";
-					if (j == 0) {
-					
-						innerClassName = "active";
-						j++;
-					}
-					measurementSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
-				});
-			} 
-			i++;
-			typeSelector += '<li role="presentation" class="' + className + '"><a href="#' + sensor.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensor.name + '\', \'' + sensor.name + '\');">' + sensor.name + '</a></li>';
+				innerClassName = "active";
+				i++;
+			}
+			var measurement = sensor.measurements[Object.keys(sensor.measurements)[0]];
+			measurementSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensor.name + '\', \'' + measurement.name + '\');">' + sensor.name.replace("_", " ") + '</a></li>';
 		}
 	});
 
 	jQuery("#smoje-sensors").html(typeSelector);
 	jQuery("#smoje-measurements").html(measurementSelector);
-	
-	setMeasurement(Object.keys(smojes[0].sensors)[0], Object.keys(smojes[0].sensors)[0]);
+	var sensorKey = Object.keys(smojes[0].sensors)[0];
+	var measurementKey = Object.keys(smojes[0].sensors[sensorKey].measurements)[0];
+	setMeasurement(sensorKey, measurementKey);
 }
 
 function setSensor (sensorKey) {
@@ -227,12 +219,13 @@ function setSensor (sensorKey) {
 			measurementSelector += '<li role="presentation" class="' + className + '"><a href="#' + measurement.name.toLowerCase() + '" data-toggle="tab" onclick="setMeasurement(\'' + sensorKey + '\', \'' + measurement.name.toLowerCase() + '\');">' + measurement.name + '</a></li>';
 		});
 	}
-	jQuery("#smoje-measurements").html(measurementSelector);
+	jQuery("#smoje-sensors").html(measurementSelector);
 }
 
 function setMeasurement (sensorKey, measurementKey) {
 
 	var measurement = smojes[0].sensors[sensorKey].measurements[measurementKey];
+	console.log(smojes[0].sensors[sensorKey].chartData);
 	var myData = dataObj;
 	myData.graphs = [];
 	myData.valueAxes[0] = {
@@ -253,19 +246,18 @@ function setMeasurement (sensorKey, measurementKey) {
 			"bulletBorderThickness": 1,
 			"hideBulletsCount": 30,
 			"title": smojes[i].name,
-			"valueField": measurement.name + "Value" + (i+1),
+			"valueField": measurement.name + "Value",
 			"fillAlphas": 0,
 			"type": "smoothedLine",
 		};
 		graph.valueText = "[[value]] " + measurement.unit;
 		graph.balloonText = "[[title]]:<b>[[value]] " + measurement.unit + "</b>";
-		graph.valueField = measurement.name + "Value" + (i+1);
+		graph.valueField = measurement.name + "Value";
 		myData.graphs.push(graph);
 	}
 	// var chartData = generateChartData(1000, measurement.minValue, measurement.range, measurement.name);
 	chart = AmCharts.makeChart("chartdiv", myData);
 	chart.valueAxes[0].unit = " " + measurement.unit;
-	console.log(smojes[0].sensors[sensorKey]);
 	chart.dataProvider = smojes[0].sensors[sensorKey].chartData;
 	chart.validateData();
 	zoomChart();
