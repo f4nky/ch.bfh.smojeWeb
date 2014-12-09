@@ -29,7 +29,7 @@ function initialize() {
 	addSmoje(6, latlong[0], latlong[1], "JLaw");
 
 	/* jQuery.getJSON( 
-		"http://178.62.163.199/smoje/index.php/Measurement", function( data ) {
+		"http://178.62.163.199/smoje/index.php/measurement", function( data ) {
 		
 		jQuery.each( data, function( smojeKey, smoje ) {
 			

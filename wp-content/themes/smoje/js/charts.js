@@ -1,9 +1,6 @@
 var chart;
 var jsonData, tmpSensor, tmpMeasurement;
-
-var sensors = [];
 var smojes = [];
-var chartData = [];
 
 var styles = [
 	{
@@ -29,7 +26,7 @@ var styles = [
 ];
 
 jQuery.getJSON( 
-	"http://178.62.163.199/smoje/index.php/measurements/6", function( data ) {
+	"http://178.62.163.199/smoje/index.php/measurement/6", function( data ) {
 	
 	var i = 0;
 	jsonData = data;
@@ -50,22 +47,21 @@ jQuery.getJSON(
 			
 			var sensorObj = {};
 			sensorObj.name = sensor.Name;
-			if (sensor.Id != 8) {
+			// Exclude camera and gps...
+			if (sensor.Id != 8 && sensor.Id != 10) {
 				
+				i++;
 				id = smoje.Id;
 				name = smoje.Name;
 				sensorObj.measurements = {};
+				sensorObj.chartData = [];
 				jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
 			
-					if (sensor.Id == 7) {
+					var obj = {};
+					obj["date"] = new Date(measurement.Timestamp.date);
+					obj[measurement.Name + "Value" + i] = measurement.ValueFloat;
+					sensorObj.chartData.push(obj);
 					
-						chartData.push({
-						
-							"date": new Date(measurement.Timestamp.date),
-							"tempAirValue1": measurement.ValueFloat
-						})
-					
-					}
 					var measurementObj = {
 						"name": measurement.Name,
 						"minValue": measurement.ValueFloat-5,
@@ -269,7 +265,8 @@ function setMeasurement (sensorKey, measurementKey) {
 	// var chartData = generateChartData(1000, measurement.minValue, measurement.range, measurement.name);
 	chart = AmCharts.makeChart("chartdiv", myData);
 	chart.valueAxes[0].unit = " " + measurement.unit;
-	chart.dataProvider = chartData;
+	console.log(smojes[0].sensors[sensorKey]);
+	chart.dataProvider = smojes[0].sensors[sensorKey].chartData;
 	chart.validateData();
 	zoomChart();
 }
