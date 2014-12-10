@@ -58,7 +58,8 @@ jQuery.getJSON(
 				jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
 			
 					var obj = {};
-					obj["date"] = new Date(measurement.timestamp);
+					var arr = measurement.timestamp.split(/[- :]/);
+					obj["date"] = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
 					obj[measurement.name + "Value"] = measurement.valueFloat;
 					sensorObj.chartData.unshift(obj);
 					
