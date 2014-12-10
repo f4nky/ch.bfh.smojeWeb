@@ -91,34 +91,14 @@ $smoje = new Smoje($_GET["id"]);
 					$name = "";
 					$value = "";
 					
-					foreach($sensor["measurements"] as $measurement) {
+					$measurement = $sensor["measurements"][0];
+					$name = $measurement["name"];
+					$value = $measurement["valueFloat"]." ".str_replace("^", "", $measurement["unit"]);
 					
-						if ($name != "" && $name != $measurement["name"]) {
-							
-							?>
-					<tr>
-						<th><?= $name ?>:</th>
-						<td><?= $value ?></td>
-					</tr>
-							<?php
-
-						}
-						$name = $measurement["name"];
-						$value = $measurement["valueFloat"]." ".str_replace("^", "", $measurement["unit"]);
-					}
-					
-					if ($name != "") {
-						
 					?>
 					<tr>
 						<td colspan="2"><?= $value ?></td>
 					</tr>
-					
-					<?php
-						
-					}
-					
-					?>
 				</table>
 			</div>
 		<?php
