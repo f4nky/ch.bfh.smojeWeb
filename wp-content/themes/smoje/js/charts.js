@@ -259,6 +259,7 @@ function setMeasurement (sensorKey, measurementKey) {
 	chart.dataProvider = smojes[0].sensors[sensorKey].chartData;
 	chart.validateData();
 	zoomChart();
+	chart.validateNow();
 }
 
 // generate some random data, quite different range
