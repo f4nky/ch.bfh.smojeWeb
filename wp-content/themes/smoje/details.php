@@ -48,7 +48,9 @@ Template Name: Details
 					<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/none.js"></script>
 					<script type="text/javascript" src="http://www.amcharts.com/lib/3/amstock.js"></script>
 					<script type="text/javascript" src="http://cdn.amcharts.com/lib/3/lang/de.js"></script>
-					<div id="chartdiv"></div>							
+					<div id="chartcontainer">
+						<div id="chartdiv"></div>
+					</div>							
 					<script src="/ch.bfh.smojeWeb/wp-content/themes/smoje/js/charts.js"></script>
 				</div>
 			</div>
