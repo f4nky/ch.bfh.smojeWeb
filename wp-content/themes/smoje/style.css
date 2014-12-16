@@ -282,6 +282,11 @@ table.details td {
 	margin-bottom: 0.2em;
 }
 
+.measurementDate {
+	
+	font-size: 0.8em;
+}
+
 /* === MOBILE STYLES === */
 @media(max-width: 767px) {
 	header {

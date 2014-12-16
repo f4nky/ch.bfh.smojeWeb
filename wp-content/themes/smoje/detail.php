@@ -40,7 +40,7 @@ $smoje = new Smoje($_GET["id"]);
 			<div class="col-md-12">
 				<div id="map-holder-detail" data-param="<?= $latlong["latitude"]."|".$latlong["longitude"] ?>"></div>
 				<div class="map-details">
-					<h3>GPS <span class="measurementData">(<?= $date->format('d.m.y H:i:s') ?>)</span></h3>
+					<h3>GPS <span class="measurementDate">(<?= $date->format('d.m.y H:i:s') ?>)</span></h3>
 					<table class="details">
 						<tr>
 							<th>Latitude:</th>
@@ -71,7 +71,7 @@ $smoje = new Smoje($_GET["id"]);
 				}
 			?>
 			<div class="col-md-12">
-				<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementData\">(".$date.")</span>" ?></h3>
+				<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementDate\">(".$date.")</span>" ?></h3>
 				<img src="<?= str_replace("/var/www", "http://178.62.163.199", $value) ?>" />
 			</div>
 			<?php
@@ -91,7 +91,7 @@ $smoje = new Smoje($_GET["id"]);
 
 		?>
 			<div class="col-md-6">
-				<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementData\">(".$date.")</span>" ?></h3>
+				<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementDate\">(".$date.")</span>" ?></h3>
 				<p><?= $sensor["description"] ?></p
 				<table class="details">
 					<?php

@@ -1,6 +1,6 @@
 var chart;
-var jsonData, tmpSensor, tmpMeasurement;
-var smojes = [];
+var jsonData, tmpSensor, tmpMeasurement, mSensorKey;
+var smojes, sensorData;
 var sensorData = {};
 
 var styles = [
@@ -26,65 +26,7 @@ var styles = [
 	}
 ];
 
-jQuery.getJSON( 
-	"http://178.62.163.199/smoje/index.php/Stations/Sensors/Measurements/5", function( data ) {
-	
-	var sensorSelector = "";
-	var i = 0;
-	var j = 0;
-	jQuery.each( data.station, function( stationKey, station ) {
-		
-		smojes.push({
-			"smojeId": station.stationId,
-			"title": station.title
-		})
-		jQuery.each( station.sensors, function( sensorKey, sensor ) {
-		
-			if (sensor.name.indexOf("camera") == -1 && !sensorData[sensor.name]) {
-			
-				var innerClassName = "";
-				if (j == 0) {
-			
-					innerClassName = "active";
-					j++;
-				}
-				sensorSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + sensor.title + '" data-toggle="tab" onclick="setSensor(\'' + sensor.name + '\');">' + sensor.title + '</a></li>';
-				
-				sensorData[sensor.name] = {
-					"name": sensor.name,
-					"title": sensor.title,
-					"range": 10,
-					"unit": sensor.unit,
-					"measurements": []
-				};
-			}
-			var minValue = 10000000;
-			if (sensorData[sensor.name]) {
-				
-				jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
-		
-					if (parseFloat(measurement.value < minValue)) {
-					
-						minValue = measurement.value;
-					}
-					var obj = {};
-					var arr = measurement.timestamp.date.split(/[- :]/);
-					obj["date"] = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
-					obj[sensor.name + "Value_" + station.stationId] = measurement.value;
-					sensorData[sensor.name].measurements.unshift(obj);
-				});
-				if (!sensorData[sensor.name].minValue || (minValue < sensorData[sensor.name].minValue)) {
-				
-					sensorData[sensor.name].minValue = minValue;
-				}
-			}
-		});
-		i++;
-	});
-
-	jQuery("#smoje-sensors").html(sensorSelector);
-	setSensor(data.station[0].sensors[0].name);
-});
+getData(true);
 
 var dataObj = {
     "type": "serial",
@@ -124,6 +66,7 @@ var dataObj = {
 
 function setSensor (sensorKey) {
 
+	mSensorKey = sensorKey;
 	var sensor = sensorData[sensorKey];
 	var myData = dataObj;
 	myData.graphs = [];
@@ -154,13 +97,94 @@ function setSensor (sensorKey) {
 		graph.valueField = sensor.name + "Value_" + smojes[i].smojeId;
 		myData.graphs.push(graph);
 	}
-	// var chartData = generateChartData(1000, measurement.minValue, measurement.range, measurement.name);
+	
 	chart = AmCharts.makeChart("chartdiv", myData);
 	chart.valueAxes[0].unit = " " + sensor.unit;
 	chart.dataProvider = sensorData[sensorKey].measurements;
 	chart.validateData();
 	zoomChart();
 	chart.validateNow();
+}
+
+function getData(init) {
+	
+	smojes = [];
+	sensorData = {};
+	jQuery.getJSON( 
+		"http://178.62.163.199/smoje/index.php/Stations/Sensors/Measurements/5", function( data ) {
+	
+		var sensorSelector = "";
+		var i = 0;
+		var j = 0;
+		jQuery.each( data.station, function( stationKey, station ) {
+		
+			smojes.push({
+				"smojeId": station.stationId,
+				"title": station.name
+			});
+			jQuery.each( station.sensors, function( sensorKey, sensor ) {
+		
+				if (sensor.name.indexOf("camera") == -1 && !sensorData[sensor.name]) {
+			
+					var innerClassName = "";
+					if (j == 0) {
+			
+						innerClassName = "active";
+						j++;
+					}
+					
+					if (init) {
+						
+						sensorSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + sensor.title + '" data-toggle="tab" onclick="setSensor(\'' + sensor.name + '\');">' + sensor.title + '</a></li>';
+					}
+				
+					sensorData[sensor.name] = {
+						"name": sensor.name,
+						"title": sensor.title,
+						"range": 10,
+						"unit": sensor.unit,
+						"measurements": []
+					};
+				}
+				var minValue = 10000000;
+				if (sensorData[sensor.name]) {
+				
+					jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
+		
+						if (parseFloat(measurement.value < minValue)) {
+					
+							minValue = measurement.value;
+						}
+						var obj = {};
+						var arr = measurement.timestamp.date.split(/[- :]/);
+						obj["date"] = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+						obj[sensor.name + "Value_" + station.stationId] = measurement.value;
+						sensorData[sensor.name].measurements.unshift(obj);
+					});
+					if (!sensorData[sensor.name].minValue || (minValue < sensorData[sensor.name].minValue)) {
+				
+						sensorData[sensor.name].minValue = minValue;
+					}
+				}
+			});
+			i++;
+		});
+
+		if (init) {
+			
+			jQuery("#smoje-sensors").html(sensorSelector);
+			setSensor(data.station[0].sensors[0].name);
+			window.setInterval(function() {
+				
+				getData();
+			}, 60000);
+		}
+		else {
+			
+			chart.dataProvider = sensorData[mSensorKey].measurements;
+			chart.validateData();
+		}
+	});
 }
 
 function zoomChart(){

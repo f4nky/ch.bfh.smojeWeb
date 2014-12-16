@@ -1,4 +1,5 @@
 var contentStrings = {};
+var holderType = "large";
 var markers = {};
 var smojes = [];
 var image, map, infoWindow, mapOptions, isDetailOpen, detailContainer, mapHolder, headerContainer, detailMap, detailMapOptions;
@@ -7,6 +8,11 @@ var smojeCount = 0;
 function initialize() {
 	
 	mapHolder = jQuery("#map-holder");
+	if (mapHolder.hasClass("banner")) {
+		
+		holderType = "small";
+		console.log("small");
+	}
 	headerContainer = jQuery("header");
 	detailContainer = jQuery("#detail-container");
 	image = {
@@ -41,7 +47,7 @@ function addSmoje(smoje) {
 	jQuery.getJSON(smoje.urlTissan, function( data ) {
 	
 		var gps = data.lastPosition;
-		contentStrings[smoje.smojeId] = 
+		contentStrings[smoje.stationId] = 
 			'<div id="mapContent" style="width: 300px; height: 160px;">'+
 				'<h1 class="mapHeading">' + smoje.name + '</h1>'+
 				'<div id="mapContent">'+
@@ -78,7 +84,7 @@ function addSmoje(smoje) {
 			var measurement = sensor.measurements[0];
 			var arr = measurement.timestamp.date.split(/[- :]/);
 			var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
-			contentStrings[smoje.smojeId] += 
+			contentStrings[smoje.stationId] += 
 						'<tr>' +
 							'<th>' +
 								sensor.title + ':' +
@@ -88,7 +94,7 @@ function addSmoje(smoje) {
 							'</td>' +
 						'</tr>';
 		}
-		contentStrings[smoje.smojeId] +=
+		contentStrings[smoje.stationId] +=
 					'</table>' +
 					'<a class="btn btn-default measurementDetailLink" href="#" onclick="openDetail(' + smoje.stationId + ')">Details</a>' +
 				'</div>';
@@ -101,7 +107,7 @@ function addSmoje(smoje) {
 	
 			map = new google.maps.Map(mapHolder.get(0), mapOptions);
 		}
-		markers[smoje.smojeId] = new google.maps.Marker({
+		markers[smoje.stationId] = new google.maps.Marker({
 			position: new google.maps.LatLng(gps.latitude , gps.longitude),
 			icon: image,
 			map: map,
@@ -110,15 +116,25 @@ function addSmoje(smoje) {
 		if (smojeCount == 0) {
 	
 			infoWindow = new google.maps.InfoWindow();
-			infoWindow.setContent(contentStrings[smoje.smojeId]);
+			infoWindow.setContent(contentStrings[smoje.stationId]);
 			// infoWindow.close();
 			// infoWindow.open(map,markers[smoje.smojeId]);
 		}
-		google.maps.event.addListener(markers[smoje.smojeId], 'click', function() {
-			infoWindow.setContent(contentStrings[smoje.smojeId]);
-			infoWindow.close();
-			infoWindow.open(map,markers[smoje.smojeId]);
-		});
+		if (holderType == "large") {
+			
+			google.maps.event.addListener(markers[smoje.stationId], 'click', function() {
+				infoWindow.setContent(contentStrings[smoje.stationId]);
+				infoWindow.close();
+				infoWindow.open(map,markers[smoje.stationId]);
+			});
+		}
+		else {
+			
+			google.maps.event.addListener(markers[smoje.stationId], 'click', function() {
+				console.log(smoje)
+				openDetail(smoje.stationId);
+			});
+		}
 		resize();
 		
 		smojeCount++;
