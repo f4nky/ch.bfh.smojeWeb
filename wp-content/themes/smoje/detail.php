@@ -59,23 +59,26 @@ $smoje = new Smoje($_GET["id"]);
 		
 		foreach($smoje->sensors as $sensor) {
 			
-			if (stristr($sensor["name"], "camera")) {
+			if (array_key_exists("displayTypeId", $sensor)) {
 				
-				$value = "";
-				foreach($sensor["measurements"] as $measurement) {
+				if (stristr($sensor["name"], "camera")) {
+				
+					$value = "";
+					foreach($sensor["measurements"] as $measurement) {
 					
-					$value = $measurement["value"];
-					$measurement = $sensor["measurements"][0];
-					$date = new DateTime($measurement["timestamp"]["date"]);
-					$date = $date->format('d.m.y H:i:s');
-				}
-			?>
-			<div class="col-md-12">
-				<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementDate\">(".$date.")</span>" ?></h3>
-				<img src="<?= str_replace("/var/www", "http://178.62.163.199", $value) ?>" />
-			</div>
-			<?php
+						$value = $measurement["value"];
+						$measurement = $sensor["measurements"][0];
+						$date = new DateTime($measurement["timestamp"]["date"]);
+						$date = $date->format('d.m.y H:i:s');
+					}
+				?>
+				<div class="col-md-12">
+					<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementDate\">(".$date.")</span>" ?></h3>
+					<img src="<?= str_replace("/var/www", "http://178.62.163.199", $value) ?>" />
+				</div>
+				<?php
 				
+				}
 			}
 		}
 	
@@ -83,7 +86,8 @@ $smoje = new Smoje($_GET["id"]);
 	
 			if (
 				($sensor["measurements"] && $sensor["name"] != "gps") &&
-				(!stristr($sensor["name"], "camera"))) {
+				(!stristr($sensor["name"], "camera")) &&
+				array_key_exists("displayTypeId", $sensor)) {
 					
 					$measurement = $sensor["measurements"][0];
 					$date = new DateTime($measurement["timestamp"]["date"]);

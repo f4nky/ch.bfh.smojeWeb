@@ -124,7 +124,9 @@ function getData(init) {
 			});
 			jQuery.each( station.sensors, function( sensorKey, sensor ) {
 		
-				if (sensor.name.indexOf("camera") == -1 && !sensorData[sensor.name]) {
+				if (sensor.name.indexOf("camera") == -1 &&
+					!sensorData[sensor.name] &&
+					sensor.displayTypeId) {
 			
 					var innerClassName = "";
 					if (j == 0) {

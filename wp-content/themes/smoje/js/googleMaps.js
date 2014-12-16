@@ -11,7 +11,6 @@ function initialize() {
 	if (mapHolder.hasClass("banner")) {
 		
 		holderType = "small";
-		console.log("small");
 	}
 	headerContainer = jQuery("header");
 	detailContainer = jQuery("#detail-container");
@@ -81,18 +80,21 @@ function addSmoje(smoje) {
 		for (var i = 0; i < smoje.sensors.length; i++) {
 	
 			var sensor = smoje.sensors[i];
-			var measurement = sensor.measurements[0];
-			var arr = measurement.timestamp.date.split(/[- :]/);
-			var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
-			contentStrings[smoje.stationId] += 
-						'<tr>' +
-							'<th>' +
-								sensor.title + ':' +
-							'</th>' +
-							'<td>' +
-								measurement.value + ' ' + sensor.unit + ' <span class="measurementDate">(' + date + ")</span>"
-							'</td>' +
-						'</tr>';
+			if (sensor.displayTypeId == 1) {
+				
+				var measurement = sensor.measurements[0];
+				var arr = measurement.timestamp.date.split(/[- :]/);
+				var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+				contentStrings[smoje.stationId] += 
+							'<tr>' +
+								'<th>' +
+									sensor.title + ':' +
+								'</th>' +
+								'<td>' +
+									measurement.value + ' ' + sensor.unit + ' <span class="measurementDate">(' + date + ")</span>"
+								'</td>' +
+							'</tr>';
+			}
 		}
 		contentStrings[smoje.stationId] +=
 					'</table>' +
@@ -131,7 +133,6 @@ function addSmoje(smoje) {
 		else {
 			
 			google.maps.event.addListener(markers[smoje.stationId], 'click', function() {
-				console.log(smoje)
 				openDetail(smoje.stationId);
 			});
 		}
