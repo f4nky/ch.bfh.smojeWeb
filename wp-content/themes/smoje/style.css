@@ -271,13 +271,13 @@ table.details td {
 	text-transform: uppercase;
 }
 
-#smoje-sensors {
+#smoje-measurements {
 	
 	margin-top: 1em;
 	display: none;
 }
 
-#smoje-measurements li {
+#smoje-sensors li {
 	
 	margin-bottom: 0.2em;
 }

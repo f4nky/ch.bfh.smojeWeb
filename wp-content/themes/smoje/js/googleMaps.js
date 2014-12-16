@@ -1,21 +1,14 @@
 var contentStrings = {};
 var markers = {};
+var smojes = [];
 var image, map, infoWindow, mapOptions, isDetailOpen, detailContainer, mapHolder, headerContainer, detailMap, detailMapOptions;
+var smojeCount = 0;
 
 function initialize() {
 	
 	mapHolder = jQuery("#map-holder");
 	headerContainer = jQuery("header");
 	detailContainer = jQuery("#detail-container");
-
-	var latlong = mapHolder.attr("data-param").split("|");
-
-	mapOptions = {
-		center: { lat: parseFloat(latlong[0]) ,lng: parseFloat(latlong[1])},
-		zoom: 12
-	};
-	map = new google.maps.Map(mapHolder.get(0), mapOptions);
-
 	image = {
 		url: 'http://www.smoje.ch/theme/default/images/map-marker.png',
 		// This marker is 20 pixels wide by 32 pixels tall.
@@ -25,42 +18,17 @@ function initialize() {
 		// The anchor for this image is the base of the flagpole at 0,32.
 		anchor: new google.maps.Point(16, 44)
 	};
-	
-	addSmoje(6, latlong[0], latlong[1], "JLaw");
 
-	/* jQuery.getJSON( 
-		"http://178.62.163.199/smoje/index.php/measurement", function( data ) {
+	jQuery.getJSON( 
+		"http://178.62.163.199/smoje/index.php/Stations/Sensors/Measurements/", function( data ) {
+	
+		jsonData = data.station;
 		
-		jQuery.each( data, function( smojeKey, smoje ) {
-			
-			var id, name, lat, long;
-			jQuery.each( smoje.Sensors, function( sensorKey, sensor ) {
-				
-				if (sensor.Id == 8) {
-					
-					id = smoje.Id;
-					name = smoje.Name;
-					jQuery.each( sensor.Mesaurements, function( measurementKey, measurement ) {
-				
-						switch (measurement.Name) {
-							
-							case "latitude":
-								lat = measurement.ValueFloat;
-								break;
-							case "longitude":
-								long = measurement.ValueFloat;
-								break;
-						}
-					});
-					if (lat > 0 && long > 0) {
-						
-						addSmoje(id, lat, long, name);
-					}
-				}
-			});
+		jQuery.each( jsonData, function( smojeKey, smoje ) {
+		
+			addSmoje(smoje);
 		});
-	}); */
-		resize();
+	});
 }
 
 jQuery(window).resize(function() {
@@ -68,17 +36,92 @@ jQuery(window).resize(function() {
 	resize();
 });
 
-function addSmoje(id, lat, long, name) {
+function addSmoje(smoje) {
+	
+	jQuery.getJSON(smoje.urlTissan, function( data ) {
+	
+		var gps = data.lastPosition;
+		contentStrings[smoje.smojeId] = 
+			'<div id="mapContent" style="width: 300px; height: 160px;">'+
+				'<h1 class="mapHeading">' + smoje.name + '</h1>'+
+				'<div id="mapContent">'+
+					'<table class="details">' +
+						'<tr>' +
+							'<th>' +
+								'Position:' +
+							'</th>' +
+							'<td>' +
+								'<table class="details">' +
+									'<tr>' +
+										'<th>' +
+											'Latitude:' +
+										'</th>' +
+										'<td>' +
+											gps.latitude +
+										'</td>' +
+									'<tr>' +
+									'<tr>' +
+										'<th>' +
+											'Longitude:' +
+										'</th>' +
+										'<td>' +
+											gps.longitude +
+										'</td>' +
+									'<tr>' +
+								'</table>' +
+							'</td>' +
+						'</tr>';
 
-	markers[id] = new google.maps.Marker({
-		position: new google.maps.LatLng(lat , long),
-		icon: image,
-		map: map,
-		title: name
-	});
+		for (var i = 0; i < smoje.sensors.length; i++) {
+	
+			var sensor = smoje.sensors[i];
+			var measurement = sensor.measurements[0];
+			var arr = measurement.timestamp.date.split(/[- :]/);
+			var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+			contentStrings[smoje.smojeId] += 
+						'<tr>' +
+							'<th>' +
+								sensor.title + ':' +
+							'</th>' +
+							'<td>' +
+								measurement.value + ' ' + sensor.unit + ' <span class="measurementDate">(' + date + ")</span>"
+							'</td>' +
+						'</tr>';
+		}
+		contentStrings[smoje.smojeId] +=
+					'</table>' +
+					'<a class="btn btn-default measurementDetailLink" href="#" onclick="openDetail(' + smoje.stationId + ')">Details</a>' +
+				'</div>';
 
-	google.maps.event.addListener(markers[id], 'click', function() {
-		openDetail(6);
+		mapOptions = {
+			center: { lat: parseFloat(gps.latitude) ,lng: parseFloat(gps.longitude)},
+			zoom: 12
+		};
+		if (smojeCount == 0) {
+	
+			map = new google.maps.Map(mapHolder.get(0), mapOptions);
+		}
+		markers[smoje.smojeId] = new google.maps.Marker({
+			position: new google.maps.LatLng(gps.latitude , gps.longitude),
+			icon: image,
+			map: map,
+			title: smoje.name
+		});
+		if (smojeCount == 0) {
+	
+			infoWindow = new google.maps.InfoWindow();
+			infoWindow.setContent(contentStrings[smoje.smojeId]);
+			// infoWindow.close();
+			// infoWindow.open(map,markers[smoje.smojeId]);
+		}
+		google.maps.event.addListener(markers[smoje.smojeId], 'click', function() {
+			infoWindow.setContent(contentStrings[smoje.smojeId]);
+			infoWindow.close();
+			infoWindow.open(map,markers[smoje.smojeId]);
+		});
+		resize();
+		
+		smojeCount++;
 	});
 }
 
