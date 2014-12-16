@@ -21,10 +21,10 @@
 define('DB_NAME', 'wordpress_smoje');
 
 /** Ersetze username_here mit deinem MySQL-Datenbank-Benutzernamen */
-define('DB_USER', 'root');
+define('DB_USER', 'app_smoje');
 
 /** Ersetze password_here mit deinem MySQL-Passwort */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '2014Smoje$');
 
 /** Ersetze localhost mit der MySQL-Serveradresse */
 define('DB_HOST', 'localhost');
