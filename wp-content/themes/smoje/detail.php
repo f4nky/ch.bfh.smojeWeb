@@ -34,21 +34,21 @@ $smoje = new Smoje($_GET["id"]);
 				"latitude" => $data["lastPosition"]["latitude"],
 				"longitude" => $data["lastPosition"]["longitude"]
 			);
-			$date = new DateTime($data["lastPosition"]["devicetime"]);
+			$date = new DateTime($data["timeUpdated"]);
 
 		?>
 			<div class="col-md-12">
 				<div id="map-holder-detail" data-param="<?= $latlong["latitude"]."|".$latlong["longitude"] ?>"></div>
 				<div class="map-details">
-					<h3>GPS <span class="measurementDate">(<?= $date->format('d.m.y H:i:s') ?>)</span></h3>
+					<h3>GPS <span class="measurementDate">(<?= $date->format('d.m.Y H:i:s') ?>)</span></h3>
 					<table class="details">
 						<tr>
-							<th>Latitude:</th>
-							<td><?= $latlong["latitude"] ?></td>
+							<th>Breitengrad:</th>
+							<td><?= $latlong["latitude"] ?> °</td>
 						</tr>
 						</tr>
-							<th>Longitude:</th>
-							<td><?= $latlong["longitude"] ?></td>
+							<th>Längengrad:</th>
+							<td><?= $latlong["longitude"] ?> °</td>
 						</tr>
 					</table>
 				</div>
@@ -69,7 +69,7 @@ $smoje = new Smoje($_GET["id"]);
 						$value = $measurement["value"];
 						$measurement = $sensor["measurements"][0];
 						$date = new DateTime($measurement["timestamp"]["date"]);
-						$date = $date->format('d.m.y H:i:s');
+						$date = $date->format('d.m.Y H:i:s');
 					}
 				?>
 				<div class="col-md-12">
@@ -91,12 +91,11 @@ $smoje = new Smoje($_GET["id"]);
 					
 					$measurement = $sensor["measurements"][0];
 					$date = new DateTime($measurement["timestamp"]["date"]);
-					$date = $date->format('d.m.y H:i:s');
+					$date = $date->format('d.m.Y H:i:s');
 
 		?>
 			<div class="col-md-6">
 				<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementDate\">(".$date.")</span>" ?></h3>
-				<p><?= $sensor["description"] ?></p
 				<table class="details">
 					<?php
 					

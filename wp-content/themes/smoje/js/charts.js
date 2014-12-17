@@ -36,7 +36,7 @@ var dataObj = {
     "pathToImages": "http://www.amcharts.com/lib/3/images/",
     "legend": {
         "useGraphSettings": true,
-		"valueWidth": 70
+		"valueWidth": 0
     },
     "valueAxes": [],
     "chartScrollbar": {},
@@ -144,7 +144,7 @@ function getData(init) {
 						"name": sensor.name,
 						"title": sensor.title,
 						"range": 10,
-						"unit": sensor.unit,
+						"unit": " " + sensor.unit,
 						"measurements": []
 					};
 				}

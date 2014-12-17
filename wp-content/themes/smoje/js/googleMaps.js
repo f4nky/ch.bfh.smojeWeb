@@ -46,6 +46,8 @@ function addSmoje(smoje) {
 	jQuery.getJSON(smoje.urlTissan, function( data ) {
 	
 		var gps = data.lastPosition;
+		var arr = data.timeUpdated.split(/[- :T.]/);
+		var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
 		contentStrings[smoje.stationId] = 
 			'<div id="mapContent" style="width: 300px; height: 160px;">'+
 				'<h1 class="mapHeading">' + smoje.name + '</h1>'+
@@ -53,24 +55,24 @@ function addSmoje(smoje) {
 					'<table class="details">' +
 						'<tr>' +
 							'<th>' +
-								'Position:' +
+								'Position: <span class="measurementDate">(' + date + ')</span>' +
 							'</th>' +
 							'<td>' +
 								'<table class="details">' +
 									'<tr>' +
 										'<th>' +
-											'Latitude:' +
+											'Breitengrad:' +
 										'</th>' +
 										'<td>' +
-											gps.latitude +
+											gps.latitude + '°' +
 										'</td>' +
 									'<tr>' +
 									'<tr>' +
 										'<th>' +
-											'Longitude:' +
+											'Längengrad:' +
 										'</th>' +
 										'<td>' +
-											gps.longitude +
+											gps.longitude + '°' +
 										'</td>' +
 									'<tr>' +
 								'</table>' +
@@ -84,14 +86,14 @@ function addSmoje(smoje) {
 				
 				var measurement = sensor.measurements[0];
 				var arr = measurement.timestamp.date.split(/[- :]/);
-				var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+				var date = arr[2] + "." + (arr[1]-1) + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
 				contentStrings[smoje.stationId] += 
 							'<tr>' +
 								'<th>' +
-									sensor.title + ':' +
+									sensor.title + ':' + ' <span class="measurementDate">(' + date + ')</span>' +
 								'</th>' +
 								'<td>' +
-									measurement.value + ' ' + sensor.unit + ' <span class="measurementDate">(' + date + ")</span>"
+									measurement.value + ' ' + sensor.unit +
 								'</td>' +
 							'</tr>';
 			}

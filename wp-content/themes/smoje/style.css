@@ -211,6 +211,18 @@ table.details td {
 	padding-right: 0.5em;
 }
 
+table.details td {
+	vertical-align: middle;
+}
+
+table.details th {
+	
+	color: #3d3d3d;
+	font-weight: normal;
+	font-family: Tahoma, Arial, sans-serif;
+	text-transform: uppercase;
+}
+
 #detail-container {
 	position: absolute;
 	display: none;
@@ -233,7 +245,8 @@ table.details td {
 }
 
 #detail-container h3 {
-	margin-top: 1em;;
+	margin-top: 1em;
+	font-size: 1.25em;
 	
 }
 
@@ -284,7 +297,22 @@ table.details td {
 
 .measurementDate {
 	
-	font-size: 0.8em;
+	font-size: 0.75em;
+	font-weight: normal;
+	color: #999;
+}
+
+.measurementDetailLink {
+	
+	position: absolute;
+	right: 0;
+	bottom: 0.5em;
+}
+
+th .measurementDate {
+	
+	display: block;
+	clear: left;
 }
 
 /* === MOBILE STYLES === */
