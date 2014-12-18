@@ -47,7 +47,7 @@ function addSmoje(smoje) {
 	
 		var gps = data.lastPosition;
 		var arr = data.timeUpdated.split(/[- :T.]/);
-		var date = arr[2] + "." + (arr[1]-1) + "." + arr[1] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+		var date = arr[2] + "." + arr[1] + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
 		contentStrings[smoje.stationId] = 
 			'<div id="mapContent" style="width: 300px; height: 160px;">'+
 				'<h1 class="mapHeading">' + smoje.name + '</h1>'+
@@ -86,7 +86,7 @@ function addSmoje(smoje) {
 				
 				var measurement = sensor.measurements[0];
 				var arr = measurement.timestamp.date.split(/[- :]/);
-				var date = arr[2] + "." + (arr[1]-1) + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+				var date = arr[2] + "." + arr[1] + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
 				contentStrings[smoje.stationId] += 
 							'<tr>' +
 								'<th>' +
