@@ -85,8 +85,9 @@ function addSmoje(smoje) {
 			if (sensor.displayTypeId == 1) {
 				
 				var measurement = sensor.measurements[0];
-				var arr = measurement.timestamp.date.split(/[- :]/);
-				var date = arr[2] + "." + (arr[1]-1) + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+				// var arr = measurement.timestamp.date.split(/[- :]/);
+				// var date = arr[2] + "." + (arr[1]-1) + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
+				var date = getDateStringFromTimestamp(measurement.timestamp);
 				contentStrings[smoje.stationId] += 
 							'<tr>' +
 								'<th>' +

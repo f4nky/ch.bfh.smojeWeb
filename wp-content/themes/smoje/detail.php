@@ -68,7 +68,9 @@ $smoje = new Smoje($_GET["id"]);
 					
 						$value = $measurement["value"];
 						$measurement = $sensor["measurements"][0];
-						$date = new DateTime($measurement["timestamp"]["date"]);
+						echo ($measurement["timestamp"]["date"]);
+						$date = new DateTime();
+						$date->setTimestamp($measurement["timestamp"]);
 						$date = $date->format('d.m.Y H:i:s');
 					}
 				?>
@@ -90,7 +92,8 @@ $smoje = new Smoje($_GET["id"]);
 				array_key_exists("displayTypeId", $sensor)) {
 					
 					$measurement = $sensor["measurements"][0];
-					$date = new DateTime($measurement["timestamp"]["date"]);
+					$date = new DateTime();
+					$date->setTimestamp($measurement["timestamp"]);
 					$date = $date->format('d.m.Y H:i:s');
 
 		?>

@@ -158,8 +158,8 @@ function getData(init) {
 							minValue = measurement.value;
 						}
 						var obj = {};
-						var arr = measurement.timestamp.date.split(/[- :]/);
-						obj["date"] = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]);
+						// var arr = measurement.timestamp.date.split(/[- :]/);
+						obj["date"] = new Date(measurement.timestamp*1000);
 						obj[sensor.name + "Value_" + station.stationId] = measurement.value;
 						sensorData[sensor.name].measurements.unshift(obj);
 					});
