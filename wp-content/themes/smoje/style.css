@@ -250,6 +250,10 @@ table.details th {
 	
 }
 
+#detail-container img {
+	max-width: 100%;
+}
+
 #map-holder-detail {
 	height: 200px;
 }

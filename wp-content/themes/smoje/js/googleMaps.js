@@ -49,7 +49,7 @@ function addSmoje(smoje) {
 		var arr = data.timeUpdated.split(/[- :T.]/);
 		var date = arr[2] + "." + arr[1] + "." + arr[0] + " " + arr[3] + ":" + arr[4] + ":" + arr[5];
 		contentStrings[smoje.stationId] = 
-			'<div id="mapContent" style="width: 300px; height: 160px;">'+
+			'<div id="mapContent" style="width: 340px; height: 240px;">'+
 				'<h1 class="mapHeading">' + smoje.name + '</h1>'+
 				'<div id="mapContent">'+
 					'<table class="details">' +
@@ -122,7 +122,7 @@ function addSmoje(smoje) {
 	
 			infoWindow = new google.maps.InfoWindow();
 			infoWindow.setContent(contentStrings[smoje.stationId]);
-			// infoWindow.close();
+			infoWindow.close();
 			// infoWindow.open(map,markers[smoje.smojeId]);
 		}
 		if (holderType == "large") {
