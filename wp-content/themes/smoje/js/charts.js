@@ -140,33 +140,31 @@ function getData(init) {
 						sensorSelector += '<li role="presentation" class="' + innerClassName + '"><a href="#' + sensor.title + '" data-toggle="tab" onclick="setSensor(\'' + sensor.name + '\');">' + sensor.title + '</a></li>';
 					}
 				
-					sensorData[sensor.name] = {
-						"name": sensor.name,
-						"title": sensor.title,
-						"range": 10,
-						"unit": " " + sensor.unit,
-						"measurements": []
-					};
+					if (!sensorData[sensor.name]) {
+						
+						sensorData[sensor.name] = {
+							"name": sensor.name,
+							"title": sensor.title,
+							"range": 10,
+							"unit": " " + sensor.unit,
+							"measurements": []
+						};
+					}
 				}
-				var minValue = 10000000;
 				if (sensorData[sensor.name]) {
 				
 					jQuery.each( sensor.measurements, function( measurementKey, measurement ) {
 		
-						if (parseFloat(measurement.value < minValue)) {
-					
-							minValue = measurement.value;
-						}
 						var obj = {};
 						// var arr = measurement.timestamp.date.split(/[- :]/);
 						obj["date"] = new Date(measurement.timestamp*1000);
-						obj[sensor.name + "Value_" + station.stationId] = measurement.value;
+						obj[sensor.name + "Value_" + station.stationId] = parseFloat(measurement.value);
 						sensorData[sensor.name].measurements.unshift(obj);
-					});
-					if (!sensorData[sensor.name].minValue || (minValue < sensorData[sensor.name].minValue)) {
+						if (!sensorData[sensor.name].minValue || (parseFloat(measurement.value) < sensorData[sensor.name].minValue)) {
 				
-						sensorData[sensor.name].minValue = minValue;
-					}
+							sensorData[sensor.name].minValue = parseFloat(measurement.value);
+						}
+					});
 				}
 			});
 			i++;
