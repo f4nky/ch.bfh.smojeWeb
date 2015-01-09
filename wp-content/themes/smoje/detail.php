@@ -62,7 +62,9 @@ $smoje = new Smoje($_GET["id"]);
 			if (
 				($sensor["measurements"] && $sensor["name"] != "gps") &&
 				(!stristr($sensor["name"], "camera")) &&
-				array_key_exists("displayTypeId", $sensor)) {
+				array_key_exists("displayTypeId", $sensor) &&
+				$sensor["displayTypeId"] < 3 &&
+				$sensor["measurements"][0]["value"] != "failed") {
 					
 					$measurement = $sensor["measurements"][0];
 					$date = new DateTime();
@@ -110,7 +112,7 @@ $smoje = new Smoje($_GET["id"]);
 				?>
 				<div class="col-md-12">
 					<h3><?= str_replace("_", " ", $sensor["title"])." <span class=\"measurementDate\">(".$date.")</span>" ?></h3>
-					<img src="<?= str_replace("/var/www", "http://178.62.163.199", $value) ?>" />
+					<img src="/img/<?= $value ?>" />
 				</div>
 				<?php
 				
